@@ -5,13 +5,20 @@
 
   &__sidebar {
     height: 100%;
-    padding: 100px 25px 120px 25px;
+    padding: 0 0 100px 0;
     background-color: #020203;
     box-shadow: 0px 4px 4px 0px #00000040;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
+    &__nav-container {
+      display: flex;
+      align-items: center;
+      flex-grow: 2;
+      padding-bottom: 60px;
+    }
 
     &__footer {
       rotate: 270deg;

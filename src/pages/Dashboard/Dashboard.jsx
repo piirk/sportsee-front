@@ -18,7 +18,9 @@ const Dashboard = () => {
   return (
     <div className="ss-dashboard">
       <div className="ss-dashboard__sidebar">
-        <NavDashboard buttonList={buttonList} />
+        <div className="ss-dashboard__sidebar__nav-container">
+          <NavDashboard buttonList={buttonList} />
+        </div>
         <footer className="ss-dashboard__sidebar__footer">
           <span className="ss-dashboard__sidebar__footer__copyright">
             Copyright SportSee 2020
