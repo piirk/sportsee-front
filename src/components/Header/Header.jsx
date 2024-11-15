@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="ss-header">
       <img src={logo} alt="Logo" className="ss-header__logo" />
-      <nav className="ss-nav ss-nav-top">
+      <nav className="ss-nav-top">
         <Link to="/" className="ss-nav-top__link">
           Accueil
         </Link>

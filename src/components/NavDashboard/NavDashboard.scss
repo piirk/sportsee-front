@@ -1,0 +1,19 @@
+.ss-nav-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  &__button {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
+}
