@@ -56,4 +56,5 @@ a {
 #root {
   isolation: isolate;
   display: flex;
+  flex-direction: column;
 }
