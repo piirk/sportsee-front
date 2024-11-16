@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
+import { fetchUserData } from '../../services/api'
 
 import icon1 from '../../assets/icon1.svg'
 import icon2 from '../../assets/icon2.svg'
@@ -15,16 +16,28 @@ const buttonList = [
 ]
 
 const Dashboard = () => {
-  const [data, setData] = useState(null)
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/18')
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error('Error:', error))
+    const getUserData = async () => {
+      try {
+        setLoading(true)
+        const userData = await fetchUserData(18)
+        setUser(userData)
+      } catch (error) {
+        setError(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getUserData()
   }, [])
 
-  console.log(data)
+  if (loading) return <div>Chargement données utilisateur</div>
+  if (error) return <div>Erreur : {error}</div>
+  if (!user) return <div>404 utilisateur introuvable</div>
 
   return (
     <div className="ss-dashboard">
@@ -43,7 +56,7 @@ const Dashboard = () => {
           <h1>
             Bonjour{' '}
             <span className="ss-dashboard__content__header__name">
-              {data && data.data.userInfos.firstName}
+              {user && user.data.userInfos.firstName}
             </span>
           </h1>
           <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
