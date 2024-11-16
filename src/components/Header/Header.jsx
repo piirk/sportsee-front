@@ -8,16 +8,16 @@ const Header = () => {
     <header className="ss-header">
       <img src={logo} alt="Logo" className="ss-header__logo" />
       <nav className="ss-nav-top">
-        <Link to="/" className="ss-nav-top__link">
+        <Link to="#" className="ss-nav-top__link">
           Accueil
         </Link>
-        <Link to="/" className="ss-nav-top__link">
+        <Link to="#" className="ss-nav-top__link">
           Profil
         </Link>
-        <Link to="/" className="ss-nav-top__link">
+        <Link to="#" className="ss-nav-top__link">
           Réglages
         </Link>
-        <Link to="/" className="ss-nav-top__link">
+        <Link to="#" className="ss-nav-top__link">
           Communauté
         </Link>
       </nav>
