@@ -34,7 +34,7 @@ const Dashboard = () => {
         </div>
         <footer className="ss-dashboard__sidebar__footer">
           <span className="ss-dashboard__sidebar__footer__copyright">
-            Copyright SportSee 2020
+            Copyright SportSee {new Date().getFullYear()}
           </span>
         </footer>
       </div>
