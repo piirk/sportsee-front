@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 import { fetchUserData } from '../../services/api'
@@ -9,10 +10,10 @@ import icon3 from '../../assets/icon3.svg'
 import icon4 from '../../assets/icon4.svg'
 
 const buttonList = [
-  { icon: icon1, link: '/' },
-  { icon: icon2, link: '/' },
-  { icon: icon3, link: '/' },
-  { icon: icon4, link: '/' },
+  { icon: icon1, link: '#' },
+  { icon: icon2, link: '#' },
+  { icon: icon3, link: '#' },
+  { icon: icon4, link: '#' },
 ]
 
 const Dashboard = () => {
@@ -20,11 +21,13 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  let { userId } = useParams()
+
   useEffect(() => {
     const getUserData = async () => {
       try {
         setLoading(true)
-        const userData = await fetchUserData(18)
+        const userData = await fetchUserData(userId)
         setUser(userData)
       } catch (error) {
         setError(error.message)
@@ -33,7 +36,7 @@ const Dashboard = () => {
       }
     }
     getUserData()
-  }, [])
+  }, [userId])
 
   if (loading) return <div>Chargement données utilisateur</div>
   if (error) return <div>Erreur : {error}</div>

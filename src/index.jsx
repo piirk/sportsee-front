@@ -16,7 +16,7 @@ root.render(
     >
       <Header />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path=":userId" element={<Dashboard />} />
       </Routes>
     </Router>
   </React.StrictMode>,
