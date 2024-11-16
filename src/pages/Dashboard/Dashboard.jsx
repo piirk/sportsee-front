@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 
@@ -15,6 +15,17 @@ const buttonList = [
 ]
 
 const Dashboard = () => {
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    fetch('http://localhost:3000/user/18')
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error('Error:', error))
+  }, [])
+
+  console.log(data)
+
   return (
     <div className="ss-dashboard">
       <div className="ss-dashboard__sidebar">
@@ -32,7 +43,7 @@ const Dashboard = () => {
           <h1>
             Bonjour{' '}
             <span className="ss-dashboard__content__header__name">
-              {'Thomas'}
+              {data && data.data.userInfos.firstName}
             </span>
           </h1>
           <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
