@@ -38,9 +38,9 @@ const Dashboard = () => {
     getUserData()
   }, [userId])
 
-  if (loading) return <div>Chargement données utilisateur</div>
-  if (error) return <div>Erreur : {error}</div>
-  if (!user) return <div>404 utilisateur introuvable</div>
+  if (loading) return <h1>Chargement données utilisateur</h1>
+  if (error) return <h1>Erreur : {error}</h1>
+  if (!user) return <h1>404 utilisateur introuvable</h1>
 
   return (
     <div className="ss-dashboard">
