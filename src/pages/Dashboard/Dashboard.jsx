@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 import Card from '../../components/Card/Card'
-import { fetchUserData } from '../../services/api'
+import { getUserData } from '../../services/api'
 
 import icon1 from '../../assets/icon1.svg'
 import icon2 from '../../assets/icon2.svg'
@@ -33,10 +33,10 @@ const Dashboard = () => {
   let { userId } = useParams()
 
   useEffect(() => {
-    const getUserData = async () => {
+    const getUserInfo = async () => {
       try {
         setLoading(true)
-        const userData = await fetchUserData(userId)
+        const userData = await getUserData(userId)
         setUser(userData)
       } catch (error) {
         setError(error.message)
@@ -44,7 +44,7 @@ const Dashboard = () => {
         setLoading(false)
       }
     }
-    getUserData()
+    getUserInfo()
   }, [userId])
 
   if (loading) return <h1>Chargement données utilisateur</h1>

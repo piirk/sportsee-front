@@ -14,18 +14,18 @@ const fetchData = async (url) => {
   }
 }
 
-export const fetchUserData = async (id) => {
+export const getUserData = async (id) => {
   return fetchData(`user/${id}`)
 }
 
-export const fetchUserActivity = async (id) => {
+export const getUserActivity = async (id) => {
   return fetchData(`user/${id}/activity`)
 }
 
-export const fetchUserAverageSession = async (id) => {
+export const getUserAverageSession = async (id) => {
   return fetchData(`user/${id}/average-sessions`)
 }
 
-export const fetchUserPerformance = async (id) => {
+export const getUserPerformance = async (id) => {
   return fetchData(`user/${id}/performance`)
 }
