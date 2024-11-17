@@ -46,9 +46,7 @@ const Dashboard = () => {
   return (
     <div className="ss-dashboard">
       <div className="ss-dashboard__sidebar">
-        <div className="ss-dashboard__sidebar__nav-container">
-          <NavDashboard buttonList={buttonList} />
-        </div>
+        <NavDashboard buttonList={buttonList} />
         <footer className="ss-dashboard__sidebar__footer">
           <span className="ss-dashboard__sidebar__footer__copyright">
             Copyright SportSee {new Date().getFullYear()}
