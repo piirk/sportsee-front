@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
+import Card from '../../components/Card/Card'
 import { fetchUserData } from '../../services/api'
 
 import icon1 from '../../assets/icon1.svg'
@@ -65,9 +66,9 @@ const Dashboard = () => {
           <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
         </section>
         <section className="ss-dashboard__main">
-          <div className="ss-dashboard__main__card">
+          <Card>
             <h2>Activité quotidienne</h2>
-          </div>
+          </Card>
           <div className="ss-dashboard__main__card"></div>
         </section>
       </div>
