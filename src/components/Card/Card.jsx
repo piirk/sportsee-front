@@ -2,12 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './Card.scss'
 
-const Card = ({ children, gridAreaValue }) => {
+const Card = ({ children, style }) => {
   return (
-    <div
-      className="ss-card"
-      style={gridAreaValue ? { gridArea: gridAreaValue } : {}}
-    >
+    <div className="ss-card" style={style ? style : {}}>
       {children}
     </div>
   )
@@ -15,7 +12,7 @@ const Card = ({ children, gridAreaValue }) => {
 
 Card.propTypes = {
   children: PropTypes.node.isRequired,
-  gridAreaValue: PropTypes.string,
+  gridAreaValue: PropTypes.object,
 }
 
 export default Card

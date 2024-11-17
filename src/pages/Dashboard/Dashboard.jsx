@@ -18,11 +18,11 @@ const buttonList = [
 ]
 
 const gridAreaList = [
-  '1 / 1 / 2 / 4',
-  '2 / 1 / 3 / 2',
-  '2 / 2 / 3 / 3',
-  '2 / 3 / 3 / 4',
-  '1 / 4 / 3 / 5',
+  { gridArea: '1 / 1 / 2 / 4' },
+  { gridArea: '2 / 1 / 3 / 2' },
+  { gridArea: '2 / 2 / 3 / 3' },
+  { gridArea: '2 / 3 / 3 / 4' },
+  { gridArea: '1 / 4 / 3 / 5' },
 ]
 
 const Dashboard = () => {
@@ -73,13 +73,13 @@ const Dashboard = () => {
             <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
           </section>
           <section className="ss-dashboard__content__main">
-            <Card gridAreaValue={gridAreaList[0]}>
+            <Card style={gridAreaList[0]}>
               <h2>Activité quotidienne</h2>
             </Card>
-            <Card gridAreaValue={gridAreaList[1]}></Card>
-            <Card gridAreaValue={gridAreaList[2]}></Card>
-            <Card gridAreaValue={gridAreaList[3]}></Card>
-            <div style={{ gridArea: gridAreaList[4] }}></div>
+            <Card style={gridAreaList[1]}>a</Card>
+            <Card style={gridAreaList[2]}>a</Card>
+            <Card style={gridAreaList[3]}>a</Card>
+            <div style={gridAreaList[4]}></div>
           </section>
         </div>
       </div>
