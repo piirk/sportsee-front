@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './NavDashboard.scss'
 import ButtonNavDashboard from '../ButtonNavDashboard/ButtonNavDashboard'
 
@@ -10,6 +11,15 @@ const NavDashboard = ({ buttonList }) => {
       ))}
     </nav>
   )
+}
+
+NavDashboard.propTypes = {
+  buttonList: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 }
 
 export default NavDashboard
