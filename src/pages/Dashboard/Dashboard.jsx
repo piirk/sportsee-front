@@ -17,6 +17,14 @@ const buttonList = [
   { icon: icon4, link: '#' },
 ]
 
+const gridAreaList = [
+  '1 / 1 / 2 / 4',
+  '2 / 1 / 3 / 2',
+  '2 / 2 / 3 / 3',
+  '2 / 3 / 3 / 4',
+  '1 / 4 / 3 / 5',
+]
+
 const Dashboard = () => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -54,21 +62,26 @@ const Dashboard = () => {
         </footer>
       </div>
       <div className="ss-dashboard__content">
-        <section className="ss-dashboard__content__header">
-          <h1>
-            Bonjour{' '}
-            <span className="ss-dashboard__content__header__name">
-              {user && user.data.userInfos.firstName}
-            </span>
-          </h1>
-          <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
-        </section>
-        <section className="ss-dashboard__main">
-          <Card>
-            <h2>Activité quotidienne</h2>
-          </Card>
-          <div className="ss-dashboard__main__card"></div>
-        </section>
+        <div className="ss-dashboard__content-wrap">
+          <section className="ss-dashboard__content__header">
+            <h1>
+              Bonjour{' '}
+              <span className="ss-dashboard__content__header__name">
+                {user && user.data.userInfos.firstName}
+              </span>
+            </h1>
+            <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+          </section>
+          <section className="ss-dashboard__content__main">
+            <Card gridAreaValue={gridAreaList[0]}>
+              <h2>Activité quotidienne</h2>
+            </Card>
+            <Card gridAreaValue={gridAreaList[1]}></Card>
+            <Card gridAreaValue={gridAreaList[2]}></Card>
+            <Card gridAreaValue={gridAreaList[3]}></Card>
+            <div style={{ gridArea: gridAreaList[4] }}></div>
+          </section>
+        </div>
       </div>
     </div>
   )
