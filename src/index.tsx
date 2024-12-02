@@ -5,7 +5,7 @@ import './index.scss'
 import Header from './components/Header/Header'
 import Dashboard from './pages/Dashboard/Dashboard'
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
+const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
   <React.StrictMode>
     <Router

@@ -1,9 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import './NavDashboard.scss'
 import ButtonNavDashboard from '../ButtonNavDashboard/ButtonNavDashboard'
 
-const NavDashboard = ({ buttonList }) => {
+type NavDashboardProps = {
+  buttonList: { icon: string; link: string }[]
+}
+
+const NavDashboard: React.FC<NavDashboardProps> = ({ buttonList }) => {
   return (
     <nav className="ss-nav-dashboard">
       {buttonList.map((button, index) => (
@@ -11,15 +13,6 @@ const NavDashboard = ({ buttonList }) => {
       ))}
     </nav>
   )
-}
-
-NavDashboard.propTypes = {
-  buttonList: PropTypes.arrayOf(
-    PropTypes.shape({
-      icon: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
 }
 
 export default NavDashboard

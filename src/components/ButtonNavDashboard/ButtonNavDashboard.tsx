@@ -1,8 +1,15 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import './ButtonNavDashboard.scss'
 
-const ButtonNavDashboard = ({ icon, link }) => {
+type ButtonNavDashboardProps = {
+  icon: string
+  link: string
+}
+
+const ButtonNavDashboard: React.FC<ButtonNavDashboardProps> = ({
+  icon,
+  link,
+}) => {
   return (
     <Link to={link}>
       <button className="ss-button-nav-dashboard">

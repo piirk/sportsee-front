@@ -1,9 +1,8 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import './Header.scss'
 import logo from '../../assets/logo.svg'
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header className="ss-header">
       <img src={logo} alt="Logo" className="ss-header__logo" />
