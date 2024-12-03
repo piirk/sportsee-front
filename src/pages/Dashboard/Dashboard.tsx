@@ -83,12 +83,22 @@ const Dashboard: React.FC = () => {
                 <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
               </section>
               <section className="ss-dashboard__content__main">
-                <Card style={gridAreaList[0]}>
+                <Card gridArea={gridAreaList[0]}>
                   <h2>Activité quotidienne</h2>
                 </Card>
-                <Card style={gridAreaList[1]}>a</Card>
-                <Card style={gridAreaList[2]}>a</Card>
-                <Card style={gridAreaList[3]}>
+                <Card
+                  gridArea={gridAreaList[1]}
+                  background={{ backgroundColor: '#FF0000' }}
+                >
+                  a
+                </Card>
+                <Card
+                  gridArea={gridAreaList[2]}
+                  background={{ backgroundColor: '#282D30' }}
+                >
+                  a
+                </Card>
+                <Card gridArea={gridAreaList[3]}>
                   <RadialBarChartComponent />
                 </Card>
                 <div style={gridAreaList[4]}></div>
