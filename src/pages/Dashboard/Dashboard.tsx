@@ -4,6 +4,7 @@ import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 import Card from '../../components/Card/Card'
 import RadialBarChartComponent from '../../components/RadialBarChart/RadialBarChart'
+import RadarChartComponent from '../../components/RadarChart/RadarChart'
 import { getUserData } from '../../services/api'
 import { UserData } from '../../types/user'
 
@@ -95,8 +96,9 @@ const Dashboard: React.FC = () => {
                 <Card
                   gridArea={gridAreaList[2]}
                   background={{ backgroundColor: '#282D30' }}
+                  padding={{ padding: '5px' }}
                 >
-                  a
+                  <RadarChartComponent />
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
                   <RadialBarChartComponent />
