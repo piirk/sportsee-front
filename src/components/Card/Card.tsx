@@ -6,6 +6,7 @@ type CardProps = {
   gridArea?: React.CSSProperties
   background?: React.CSSProperties
   padding?: React.CSSProperties
+  aspectRatio?: React.CSSProperties
 }
 
 const Card: React.FC<CardProps> = ({
@@ -13,9 +14,13 @@ const Card: React.FC<CardProps> = ({
   gridArea,
   background,
   padding,
+  aspectRatio = { aspectRatio: '1 / 1' },
 }) => {
   return (
-    <div className="ss-card" style={{ ...gridArea, ...background, ...padding }}>
+    <div
+      className="ss-card"
+      style={{ ...gridArea, ...background, ...padding, ...aspectRatio }}
+    >
       {children}
     </div>
   )

@@ -85,7 +85,10 @@ const Dashboard: React.FC = () => {
                 <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
               </section>
               <section className="ss-dashboard__content__main">
-                <Card gridArea={gridAreaList[0]}>
+                <Card
+                  gridArea={gridAreaList[0]}
+                  aspectRatio={{ aspectRatio: '167/64' }}
+                >
                   <h2>Activité quotidienne</h2>
                 </Card>
                 <Card
