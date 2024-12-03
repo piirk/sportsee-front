@@ -11,51 +11,68 @@ import {
 
 const sessions = [
   {
-    day: 1,
+    day: 'L',
     sessionLength: 30,
   },
   {
-    day: 2,
+    day: 'M',
     sessionLength: 40,
   },
   {
-    day: 3,
+    day: 'M',
     sessionLength: 50,
   },
   {
-    day: 4,
+    day: 'J',
     sessionLength: 30,
   },
   {
-    day: 5,
+    day: 'V',
     sessionLength: 30,
   },
   {
-    day: 6,
+    day: 'S',
     sessionLength: 50,
   },
   {
-    day: 7,
+    day: 'D',
     sessionLength: 50,
   },
 ]
 
-const LineChartComponent: React.FC = () => {
+const CustomizedDot: React.FC<{
+  cx?: number
+  cy?: number
+}> = (props) => {
+  const { cx, cy } = props
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LineChart
-        data={sessions}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-      >
-        <XAxis dataKey="day" />
+    <svg x={cx! - 15} y={cy! - 15} width={30} height={30}>
+      <circle cx="15" cy="15" r="13" fill="white" opacity="0.2" />
+      <circle cx="15" cy="15" r="8" fill="white" />
+    </svg>
+  )
+}
 
-        <CartesianGrid strokeDasharray="3 3" />
-        <Tooltip />
+const LineChartComponent: React.FC = () => {
+  const minY = Math.min(...sessions.map((session) => session.sessionLength))
+
+  return (
+    <ResponsiveContainer width="100%" height="70%">
+      <LineChart data={sessions}>
+        <XAxis
+          dataKey="day"
+          padding="no-gap"
+          axisLine={false}
+          tickLine={false}
+        />
+        <YAxis domain={[minY, 'dataMax']} hide />
+        <Tooltip cursor={false} />
         <Line
+          dot={false}
           type="monotone"
           dataKey="sessionLength"
           stroke="#8884d8"
-          activeDot={{ r: 8 }}
+          activeDot={<CustomizedDot />}
         />
       </LineChart>
     </ResponsiveContainer>

@@ -91,6 +91,7 @@ const Dashboard: React.FC = () => {
                 <Card
                   gridArea={gridAreaList[1]}
                   background={{ backgroundColor: '#FF0000' }}
+                  padding={{ padding: '0' }}
                 >
                   <LineChartComponent />
                 </Card>
