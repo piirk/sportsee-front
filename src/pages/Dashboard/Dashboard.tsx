@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 import Card from '../../components/Card/Card'
+import RadialBarChartComponent from '../../components/RadialBarChart/RadialBarChart'
 import { getUserData } from '../../services/api'
 import { UserData } from '../../types/user'
 
@@ -87,7 +88,9 @@ const Dashboard: React.FC = () => {
                 </Card>
                 <Card style={gridAreaList[1]}>a</Card>
                 <Card style={gridAreaList[2]}>a</Card>
-                <Card style={gridAreaList[3]}>a</Card>
+                <Card style={gridAreaList[3]}>
+                  <RadialBarChartComponent />
+                </Card>
                 <div style={gridAreaList[4]}></div>
               </section>
             </div>
