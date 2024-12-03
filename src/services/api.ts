@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3000'
+const API_BASE_URL = 'http://localhost:3001'
 
 const fetchData = async <T>(uri: string): Promise<T> => {
   try {
