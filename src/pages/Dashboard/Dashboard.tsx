@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 import Card from '../../components/Card/Card'
+import LineChartComponent from '../../components/LineChart/LineChart'
 import RadialBarChartComponent from '../../components/RadialBarChart/RadialBarChart'
 import RadarChartComponent from '../../components/RadarChart/RadarChart'
 import { getUserData } from '../../services/api'
@@ -91,7 +92,7 @@ const Dashboard: React.FC = () => {
                   gridArea={gridAreaList[1]}
                   background={{ backgroundColor: '#FF0000' }}
                 >
-                  a
+                  <LineChartComponent />
                 </Card>
                 <Card
                   gridArea={gridAreaList[2]}
