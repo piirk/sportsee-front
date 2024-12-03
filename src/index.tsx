@@ -1,6 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom'
 import './index.scss'
 import Header from './components/Header/Header'
 import Dashboard from './pages/Dashboard/Dashboard'
@@ -16,7 +21,9 @@ root.render(
     >
       <Header />
       <Routes>
+        <Route path="/" element={<Navigate to="/18" replace />} />
         <Route path=":userId" element={<Dashboard />} />
+        <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </Router>
   </React.StrictMode>,
