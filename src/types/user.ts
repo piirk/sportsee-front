@@ -20,7 +20,7 @@ export type KeyData = {
 }
 
 // User activity
-export type UserActivities = {
+export type UserActivity = {
   userId: number
   sessions: Activity[]
 }
@@ -40,4 +40,16 @@ export type UserSessions = {
 export type Session = {
   day: number
   sessionLength: number
+}
+
+// User performance
+export type UserPerformance = {
+  userId: number
+  kind: object
+  data: Performance[]
+}
+
+export type Performance = {
+  kind: number
+  value: number
 }
