@@ -1,5 +1,5 @@
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts'
-import './RadialBarChart.scss'
+import './ScoreChart.scss'
 
 const data = [{ name: 'score', value: 0.12, fill: '#ff0000' }]
 
