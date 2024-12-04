@@ -22,7 +22,7 @@ export type KeyData = {
 // User activity
 export type UserActivities = {
   userId: number
-  activities: Activity[]
+  sessions: Activity[]
 }
 
 export type Activity = {
@@ -39,5 +39,5 @@ export type UserSessions = {
 
 export type Session = {
   day: number
-  length: number
+  sessionLength: number
 }
