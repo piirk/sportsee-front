@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 import Card from '../../components/Card/Card'
-import LineChartComponent from '../../components/ObjectiveChart/ObjectiveChart'
-import RadialBarChartComponent from '../../components/ScoreChart/ScoreChart'
-import RadarChartComponent from '../../components/PerformanceChart/PerformanceChart'
+import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
+import ScoreChart from '../../components/ScoreChart/ScoreChart'
+import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
 import { getUserData, getDailyScore } from '../../services/api'
 import { UserData } from '../../types/user'
 
@@ -96,17 +96,17 @@ const Dashboard: React.FC = () => {
                   background={{ backgroundColor: '#FF0000' }}
                   padding={{ padding: '0' }}
                 >
-                  <LineChartComponent />
+                  <ObjectiveChart />
                 </Card>
                 <Card
                   gridArea={gridAreaList[2]}
                   background={{ backgroundColor: '#282D30' }}
                   padding={{ padding: '5px' }}
                 >
-                  <RadarChartComponent />
+                  <PerformanceChart />
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
-                  <RadialBarChartComponent score={getDailyScore(user)} />
+                  <ScoreChart score={getDailyScore(user)} />
                 </Card>
                 <div style={gridAreaList[4]}></div>
               </section>
