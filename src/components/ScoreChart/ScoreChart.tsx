@@ -1,9 +1,13 @@
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts'
 import './ScoreChart.scss'
 
-const data = [{ name: 'score', value: 0.12, fill: '#ff0000' }]
+type RadialBarChartProps = {
+  score: number | undefined
+}
 
-const RadialBarChartComponent: React.FC = () => {
+const RadialBarChartComponent: React.FC<RadialBarChartProps> = ({
+  score = 0,
+}) => {
   return (
     <div className="ss-radial-bar-chart">
       {/* Cercle blanc central */}
@@ -12,7 +16,7 @@ const RadialBarChartComponent: React.FC = () => {
         <div className="ss-radial-bar-chart__circle__text">
           <p>
             <span className="ss-radial-bar-chart__circle__text__value">
-              {data[0].value * 100}%
+              {score * 100}%
             </span>
             <br />
             de votre objectif
@@ -29,10 +33,10 @@ const RadialBarChartComponent: React.FC = () => {
           outerRadius="100%"
           barSize={10}
           startAngle={180}
-          endAngle={180 - 360 * data[0].value}
-          data={data}
+          endAngle={180 - 360 * score}
+          data={score ? [{ value: score }] : []}
         >
-          <RadialBar cornerRadius={20} dataKey="value" />
+          <RadialBar cornerRadius={20} dataKey="value" fill="#ff0000" />
         </RadialBarChart>
       </ResponsiveContainer>
     </div>

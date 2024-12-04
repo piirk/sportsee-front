@@ -6,7 +6,7 @@ import Card from '../../components/Card/Card'
 import LineChartComponent from '../../components/ObjectiveChart/ObjectiveChart'
 import RadialBarChartComponent from '../../components/ScoreChart/ScoreChart'
 import RadarChartComponent from '../../components/PerformanceChart/PerformanceChart'
-import { getUserData } from '../../services/api'
+import { getUserData, getDailyScore } from '../../services/api'
 import { UserData } from '../../types/user'
 
 import icon1 from '../../assets/icon1.svg'
@@ -106,7 +106,7 @@ const Dashboard: React.FC = () => {
                   <RadarChartComponent />
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
-                  <RadialBarChartComponent />
+                  <RadialBarChartComponent score={getDailyScore(user)} />
                 </Card>
                 <div style={gridAreaList[4]}></div>
               </section>

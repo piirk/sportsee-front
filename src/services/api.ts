@@ -31,3 +31,7 @@ export const getUserAverageSession = async (id: string): Promise<any> => {
 export const getUserPerformance = async (id: string): Promise<any> => {
   return fetchData(`user/${id}/performance`)
 }
+
+export const getDailyScore = (user: UserData): number | undefined => {
+  return user.todayScore ?? user.score
+}
