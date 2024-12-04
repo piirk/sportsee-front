@@ -1,4 +1,9 @@
-import { UserData } from '../types/user'
+import {
+  UserActivity,
+  UserData,
+  UserPerformance,
+  UserSessions,
+} from '../types/user'
 
 const API_BASE_URL = 'http://localhost:3001'
 
@@ -20,15 +25,17 @@ export const getUserData = async (id: string): Promise<UserData> => {
   return fetchData(`user/${id}`)
 }
 
-export const getUserActivity = async (id: string): Promise<any> => {
+export const getUserActivity = async (id: string): Promise<UserActivity> => {
   return fetchData(`user/${id}/activity`)
 }
 
-export const getUserAverageSession = async (id: string): Promise<any> => {
+export const getUserSessions = async (id: string): Promise<UserSessions> => {
   return fetchData(`user/${id}/average-sessions`)
 }
 
-export const getUserPerformance = async (id: string): Promise<any> => {
+export const getUserPerformance = async (
+  id: string,
+): Promise<UserPerformance> => {
   return fetchData(`user/${id}/performance`)
 }
 
