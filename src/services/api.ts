@@ -1,3 +1,5 @@
+import { UserData } from '../types/user'
+
 const API_BASE_URL = 'http://localhost:3001'
 
 const fetchData = async <T>(uri: string): Promise<T> => {
@@ -7,14 +9,14 @@ const fetchData = async <T>(uri: string): Promise<T> => {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const result = await response.json()
-    return result as T
+    return result.data as T
   } catch (error) {
     console.error('Failed to fetch data:', error)
     throw error
   }
 }
 
-export const getUserData = async (id: string): Promise<any> => {
+export const getUserData = async (id: string): Promise<UserData> => {
   return fetchData(`user/${id}`)
 }
 

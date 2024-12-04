@@ -1,4 +1,13 @@
-export type UserInfos = {
+// User data
+export type UserData = {
+  id: string
+  userInfos: UserInfo
+  keyData: KeyData
+  todayScore?: number
+  score?: number
+}
+
+export type UserInfo = {
   firstName: string
   lastName: string
 }
@@ -10,20 +19,25 @@ export type KeyData = {
   lipidCount: number
 }
 
-export type UserData = {
-  data: {
-    userInfos: UserInfos
-    keyData: KeyData
-  }
+// User activity
+export type UserActivities = {
+  userId: number
+  activities: Activity[]
 }
 
-type Session = {
-  day: string //type Date?
+export type Activity = {
+  day: string
   kilogram: number
   calories: number
 }
 
-export type UserActivity = {
+// User average session
+export type UserSessions = {
   userId: number
   sessions: Session[]
+}
+
+export type Session = {
+  day: number
+  length: number
 }

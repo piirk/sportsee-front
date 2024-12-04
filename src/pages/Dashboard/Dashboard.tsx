@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
     <div className="ss-dashboard">
       {loading && <h1>Chargement données utilisateur...</h1>}
       {error && <h1>Erreur : {error}</h1>}
-      {user && user.data && user.data.userInfos && (
+      {user && user.userInfos && (
         <>
           <div className="ss-dashboard__sidebar">
             <NavDashboard buttonList={buttonList} />
@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
                 <h1>
                   Bonjour{' '}
                   <span className="ss-dashboard__content__header__name">
-                    {user && user.data.userInfos.firstName}
+                    {user && user.userInfos.firstName}
                   </span>
                 </h1>
                 <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
