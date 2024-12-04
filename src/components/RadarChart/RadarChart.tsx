@@ -6,7 +6,6 @@ import {
   ResponsiveContainer,
   Text,
 } from 'recharts'
-import './RadarChart.scss'
 
 const data = [
   {
