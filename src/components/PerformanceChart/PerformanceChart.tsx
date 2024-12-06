@@ -34,7 +34,7 @@ const renderPolarAngleAxis = ({
   stroke?: string
   fill?: string
   index: number
-}) => (
+}): JSX.Element => (
   <Text
     {...rest}
     verticalAnchor="middle"
