@@ -6,12 +6,8 @@ import Card from '../../components/Card/Card'
 import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
-import {
-  getUserData,
-  getDailyScore,
-  getUserPerformance,
-} from '../../services/api'
-import { UserData, UserPerformance } from '../../types/user'
+import { User } from '../../models/User'
+import { UserService } from '../../services/UserService'
 
 import icon1 from '../../assets/icon1.svg'
 import icon2 from '../../assets/icon2.svg'
@@ -38,9 +34,7 @@ type RouteParams = {
 }
 
 const Dashboard: React.FC = () => {
-  const [user, setUser] = useState<UserData | null>(null)
-  const [userPerformance, setUserPerformance] =
-    useState<UserPerformance | null>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -52,38 +46,38 @@ const Dashboard: React.FC = () => {
       return
     }
 
-    const getUserInfo = async () => {
-      try {
-        setLoading(true)
-        const userData = await getUserData(userId)
-        setUser(userData)
-      } catch (error) {
-        setError((error as Error).message)
-      } finally {
-        setLoading(false)
-      }
-    }
-    getUserInfo()
+    const userService = new UserService()
 
-    const getPerformance = async () => {
+    // Load user data
+    const loadUser = async () => {
       try {
         setLoading(true)
-        const userPerformanceData = await getUserPerformance(userId)
-        setUserPerformance(userPerformanceData)
+        await userService.loadUser(userId)
+        const loadedUser = userService.getUser()
+
+        if (loadedUser) {
+          setUser(loadedUser)
+        } else {
+          setError('Failed to load user data')
+        }
       } catch (error) {
-        setError((error as Error).message)
+        setError('Error loading user data')
+        console.error(error)
       } finally {
         setLoading(false)
       }
     }
-    getPerformance()
+
+    loadUser()
   }, [userId])
+
+  console.log(user)
 
   return (
     <div className="ss-dashboard">
       {loading && <h1>Chargement données utilisateur...</h1>}
       {error && <h1>Erreur : {error}</h1>}
-      {user && user.userInfos && (
+      {user && (
         <>
           <div className="ss-dashboard__sidebar">
             <NavDashboard buttonList={buttonList} />
@@ -99,7 +93,7 @@ const Dashboard: React.FC = () => {
                 <h1>
                   Bonjour{' '}
                   <span className="ss-dashboard__content__header__name">
-                    {user && user.userInfos.firstName}
+                    {user && user.getFirstName()}
                   </span>
                 </h1>
                 {true ? (
@@ -127,12 +121,10 @@ const Dashboard: React.FC = () => {
                   background={{ backgroundColor: '#282D30' }}
                   padding={{ padding: '5px' }}
                 >
-                  {userPerformance && (
-                    <PerformanceChart data={userPerformance} />
-                  )}
+                  <PerformanceChart data={user.getPerformance()} />
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
-                  <ScoreChart score={getDailyScore(user)} />
+                  <ScoreChart score={user.getDailyScore()} />
                 </Card>
                 <div style={gridAreaList[4]}></div>
               </section>

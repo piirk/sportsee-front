@@ -6,4 +6,8 @@ export class UserPerformanceModel {
   constructor(data: UserPerformanceType) {
     this.data = data
   }
+
+  getData(): UserPerformanceType {
+    return this.data
+  }
 }

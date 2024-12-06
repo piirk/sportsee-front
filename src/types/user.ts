@@ -1,3 +1,10 @@
+export type User = {
+  userData: UserData
+  userActivity: UserActivity
+  userSessions: UserSessions
+  userPerformance: UserPerformance
+}
+
 // User data
 export type UserData = {
   id: string

@@ -30,4 +30,12 @@ export class User {
   getFirstName(): string {
     return this.userData.getFirstName()
   }
+
+  getDailyScore(): number {
+    return this.userData.getDailyScore()
+  }
+
+  getPerformance(): UserPerformance {
+    return this.userPerformance.getData()
+  }
 }

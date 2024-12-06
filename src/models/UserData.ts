@@ -10,4 +10,8 @@ export class UserDataModel {
   getFirstName(): string {
     return this.data.userInfos.firstName
   }
+
+  getDailyScore(): number {
+    return this.data.todayScore ?? this.data.score ?? 0
+  }
 }
