@@ -6,45 +6,7 @@ import {
   ResponsiveContainer,
   Text,
 } from 'recharts'
-
-const data = [
-  {
-    subject: 'Math',
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: 'Chinese',
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'English',
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Geography',
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: 'Physics',
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: 'History',
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-]
+import { UserPerformance } from '../../types/user'
 
 const renderPolarAngleAxis = ({
   payload,
@@ -77,14 +39,24 @@ const renderPolarAngleAxis = ({
   )
 }
 
-const RadarChartComponent: React.FC = () => {
+type PerformanceChartProps = {
+  data: UserPerformance
+}
+
+const RadarChartComponent: React.FC<PerformanceChartProps> = ({ data }) => {
+  const formattedData = data.data.map((item) => ({
+    subject: data.kind[item.kind],
+    A: item.value,
+    fullMark: 100,
+  }))
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart
         cx="50%"
         cy="50%"
         outerRadius="75%"
-        data={data}
+        data={formattedData}
         margin={{ top: 0, right: 20, bottom: 0, left: 20 }}
       >
         <PolarGrid radialLines={false} />

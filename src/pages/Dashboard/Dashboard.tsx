@@ -6,8 +6,12 @@ import Card from '../../components/Card/Card'
 import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
-import { getUserData, getDailyScore } from '../../services/api'
-import { UserData } from '../../types/user'
+import {
+  getUserData,
+  getDailyScore,
+  getUserPerformance,
+} from '../../services/api'
+import { UserData, UserPerformance } from '../../types/user'
 
 import icon1 from '../../assets/icon1.svg'
 import icon2 from '../../assets/icon2.svg'
@@ -35,6 +39,8 @@ type RouteParams = {
 
 const Dashboard: React.FC = () => {
   const [user, setUser] = useState<UserData | null>(null)
+  const [userPerformance, setUserPerformance] =
+    useState<UserPerformance | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -57,6 +63,19 @@ const Dashboard: React.FC = () => {
       }
     }
     getUserInfo()
+
+    const getPerformance = async () => {
+      try {
+        setLoading(true)
+        const userPerformanceData = await getUserPerformance(userId)
+        setUserPerformance(userPerformanceData)
+      } catch (error) {
+        setError((error as Error).message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getPerformance()
   }, [userId])
 
   return (
@@ -103,7 +122,9 @@ const Dashboard: React.FC = () => {
                   background={{ backgroundColor: '#282D30' }}
                   padding={{ padding: '5px' }}
                 >
-                  <PerformanceChart />
+                  {userPerformance && (
+                    <PerformanceChart data={userPerformance} />
+                  )}
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
                   <ScoreChart score={getDailyScore(user)} />

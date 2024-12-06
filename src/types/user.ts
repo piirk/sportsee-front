@@ -45,8 +45,13 @@ export type Session = {
 // User performance
 export type UserPerformance = {
   userId: number
-  kind: object
-  data: Performance[]
+  kind: { [key: number]: string }
+
+  data: Array<{
+    value: number
+
+    kind: number
+  }>
 }
 
 export type Performance = {
