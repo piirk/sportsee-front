@@ -7,7 +7,9 @@ import {
 
 const API_BASE_URL = 'http://localhost:3001'
 
-const fetchData = async <T>(uri: string): Promise<T> => {
+type ApiResponse = UserData | UserActivity | UserPerformance | UserSessions
+
+const fetchData = async <T extends ApiResponse>(uri: string): Promise<T> => {
   try {
     const response = await fetch(`${API_BASE_URL}/${uri}`)
     if (!response.ok) {
@@ -15,28 +17,32 @@ const fetchData = async <T>(uri: string): Promise<T> => {
     }
     const result = await response.json()
     return result.data as T
-  } catch (error) {
-    console.error('Failed to fetch data:', error)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Failed to fetch data:', error.message)
+    } else {
+      console.error('Failed to fetch data: Unknown error')
+    }
     throw error
   }
 }
 
 export const getUserData = async (id: string): Promise<UserData> => {
-  return fetchData(`user/${id}`)
+  return fetchData<UserData>(`user/${id}`)
 }
 
 export const getUserActivity = async (id: string): Promise<UserActivity> => {
-  return fetchData(`user/${id}/activity`)
+  return fetchData<UserActivity>(`user/${id}/activity`)
 }
 
 export const getUserSessions = async (id: string): Promise<UserSessions> => {
-  return fetchData(`user/${id}/average-sessions`)
+  return fetchData<UserSessions>(`user/${id}/average-sessions`)
 }
 
 export const getUserPerformance = async (
   id: string,
 ): Promise<UserPerformance> => {
-  return fetchData(`user/${id}/performance`)
+  return fetchData<UserPerformance>(`user/${id}/performance`)
 }
 
 export const getDailyScore = (user: UserData): number | undefined => {
