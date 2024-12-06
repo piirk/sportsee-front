@@ -51,16 +51,30 @@ const renderPolarAngleAxis = ({
   )
 }
 
+// Table de traduction des `kind`
+const kindTranslations: Record<string, string> = {
+  cardio: 'Cardio',
+  energy: 'Énergie',
+  endurance: 'Endurance',
+  strength: 'Force',
+  speed: 'Vitesse',
+  intensity: 'Intensité',
+}
+
 type PerformanceChartProps = {
   data: UserPerformance
 }
 
 const RadarChartComponent: React.FC<PerformanceChartProps> = ({ data }) => {
-  const formattedData = data.data.map((item) => ({
-    subject: data.kind[item.kind],
-    A: item.value,
-    fullMark: 100,
-  }))
+  const formattedData = data.data.map((item) => {
+    const subject =
+      kindTranslations[data.kind[item.kind]] || data.kind[item.kind]
+    return {
+      subject,
+      A: item.value,
+      fullMark: 100,
+    }
+  })
 
   return (
     <ResponsiveContainer width="100%" height="100%">
