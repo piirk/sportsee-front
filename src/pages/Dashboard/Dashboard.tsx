@@ -51,6 +51,7 @@ const Dashboard: React.FC = () => {
       console.error('userId is missing from the URL')
       return
     }
+
     const getUserInfo = async () => {
       try {
         setLoading(true)

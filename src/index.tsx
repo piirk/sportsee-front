@@ -21,7 +21,7 @@ root.render(
     >
       <Header />
       <Routes>
-        {/* Redirect to one user */}
+        {/* Redirect to one user --dev */}
         <Route path="/" element={<Navigate to="/18" replace />} />
         <Route path=":userId" element={<Dashboard />} />
         <Route path="*" element={<div>Page not found</div>} />
