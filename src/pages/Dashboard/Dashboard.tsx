@@ -101,7 +101,11 @@ const Dashboard: React.FC = () => {
                     {user && user.userInfos.firstName}
                   </span>
                 </h1>
-                <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+                {true ? (
+                  <p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+                ) : (
+                  <p>Continuez comme ça, vous êtes sur la bonne voie ! 💪</p>
+                )}
               </section>
               <section className="ss-dashboard__content__main">
                 <Card
