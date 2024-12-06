@@ -1,13 +1,11 @@
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts'
 import './ScoreChart.scss'
 
-type RadialBarChartProps = {
+type ScoreChartProps = {
   score: number | undefined
 }
 
-const RadialBarChartComponent: React.FC<RadialBarChartProps> = ({
-  score = 0,
-}) => {
+const RadialBarChartComponent: React.FC<ScoreChartProps> = ({ score = 0 }) => {
   return (
     <div className="ss-radial-bar-chart">
       {/* Cercle blanc central */}
