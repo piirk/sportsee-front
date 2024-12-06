@@ -16,12 +16,24 @@ const renderPolarAngleAxis = ({
   cy,
   ...rest
 }: {
-  payload: any
+  payload: {
+    coordinate: number
+    value: string
+    index: number
+    offset: number
+  }
   x: number
   y: number
   cx: number
   cy: number
-  rest: any
+} & {
+  textAnchor: 'end' | 'middle' | 'start' | 'inherit'
+  orientation: string
+  radius: number
+  className: string
+  stroke?: string
+  fill?: string
+  index: number
 }) => {
   return (
     <Text
