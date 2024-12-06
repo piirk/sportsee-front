@@ -40,8 +40,8 @@ const renderPolarAngleAxis = ({
       {...rest}
       verticalAnchor="middle"
       // Applique un padding entre les labels et le centre
-      y={y + (y - cy) / 20}
-      x={x + (x - cx) / 20}
+      y={y + (y - cy) / 100}
+      x={x + (x - cx) / 100}
       fill="#ffffff"
       fontSize={12}
       fontWeight="500"
