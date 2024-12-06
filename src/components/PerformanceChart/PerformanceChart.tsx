@@ -34,22 +34,20 @@ const renderPolarAngleAxis = ({
   stroke?: string
   fill?: string
   index: number
-}) => {
-  return (
-    <Text
-      {...rest}
-      verticalAnchor="middle"
-      // Applique un padding entre les labels et le centre
-      y={y + (y - cy) / 100}
-      x={x + (x - cx) / 100}
-      fill="#ffffff"
-      fontSize={12}
-      fontWeight="500"
-    >
-      {payload.value}
-    </Text>
-  )
-}
+}) => (
+  <Text
+    {...rest}
+    verticalAnchor="middle"
+    // Applique un padding entre les labels et le centre
+    y={y + (y - cy) / 100}
+    x={x + (x - cx) / 100}
+    fill="#ffffff"
+    fontSize={12}
+    fontWeight="500"
+  >
+    {payload.value}
+  </Text>
+)
 
 // Table de traduction des `kind`
 const kindTranslations: Record<string, string> = {
