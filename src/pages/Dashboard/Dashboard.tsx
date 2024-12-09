@@ -18,14 +18,7 @@ import {
   getUserSessions,
 } from '../../services/api'
 import { buttonList } from '../../config/navDashboardConfig'
-
-const gridAreaList = [
-  { gridArea: '1 / 1 / 2 / 4' },
-  { gridArea: '2 / 1 / 3 / 2' },
-  { gridArea: '2 / 2 / 3 / 3' },
-  { gridArea: '2 / 3 / 3 / 4' },
-  { gridArea: '1 / 4 / 3 / 5' },
-]
+import { gridAreaList } from '../../config/layoutConfig'
 
 type RouteParams = {
   userId: string
