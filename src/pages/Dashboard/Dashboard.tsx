@@ -17,6 +17,7 @@ import {
   getUserActivity,
   getUserSessions,
 } from '../../services/api'
+import { useFetchUserData } from '../../hooks/useFetchUserData'
 import { buttonList } from '../../config/navDashboardConfig'
 import { gridAreaList } from '../../config/layoutConfig'
 
@@ -25,51 +26,16 @@ type RouteParams = {
 }
 
 const Dashboard: React.FC = () => {
-  const [userData, setUserData] = useState<UserData | null>(null)
-  const [userPerformance, setUserPerformance] =
-    useState<UserPerformance | null>(null)
-  const [userActivity, setUserActivity] = useState<UserActivity | null>(null)
-  const [userSessions, setUserSessions] = useState<UserSessions | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
   const { userId } = useParams<RouteParams>()
 
-  useEffect(() => {
-    if (!userId) {
-      console.error('userId is missing from the URL')
-      return
-    }
-
-    const fetchAllData = async () => {
-      setLoading(true)
-      try {
-        const [
-          userDataResponse,
-          userPerformanceResponse,
-          userActivityResponse,
-          userSessionsResponse,
-        ] = await Promise.all([
-          getUserData(userId),
-          getUserPerformance(userId),
-          getUserActivity(userId),
-          getUserSessions(userId),
-        ])
-
-        setUserData(new UserData(userDataResponse))
-        setUserPerformance(new UserPerformance(userPerformanceResponse))
-        setUserActivity(new UserActivity(userActivityResponse))
-        setUserSessions(new UserSessions(userSessionsResponse))
-      } catch (error) {
-        setError((error as Error).message)
-        console.error('Error loading user data:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchAllData()
-  }, [userId])
+  const {
+    userData,
+    userPerformance,
+    userActivity,
+    userSessions,
+    loading,
+    error,
+  } = useFetchUserData(userId || '')
 
   return (
     <div className="ss-dashboard">
