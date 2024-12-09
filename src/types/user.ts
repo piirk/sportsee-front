@@ -7,7 +7,7 @@ export type User = {
 
 // User data
 export type UserData = {
-  id: string
+  id: number
   userInfos: UserInfo
   keyData: KeyData
   todayScore?: number
@@ -17,6 +17,7 @@ export type UserData = {
 export type UserInfo = {
   firstName: string
   lastName: string
+  age: number
 }
 
 export type KeyData = {

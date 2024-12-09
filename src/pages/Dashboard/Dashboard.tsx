@@ -6,8 +6,8 @@ import Card from '../../components/Card/Card'
 import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
-import { User } from '../../models/User'
-import { UserService } from '../../services/UserService'
+import { UserData } from '../../models/UserData'
+import { getUserData } from '../../services/api'
 
 import icon1 from '../../assets/icon1.svg'
 import icon2 from '../../assets/icon2.svg'
@@ -34,7 +34,7 @@ type RouteParams = {
 }
 
 const Dashboard: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null)
+  const [userData, setUserData] = useState<UserData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -46,38 +46,24 @@ const Dashboard: React.FC = () => {
       return
     }
 
-    const userService = new UserService()
-
-    // Load user data
-    const loadUser = async () => {
-      try {
-        setLoading(true)
-        await userService.loadUser(userId)
-        const loadedUser = userService.getUser()
-
-        if (loadedUser) {
-          setUser(loadedUser)
-        } else {
-          setError('Failed to load user data')
-        }
-      } catch (error) {
-        setError('Error loading user data')
-        console.error(error)
-      } finally {
+    // Load UserData
+    getUserData(userId)
+      .then((data) => {
+        setUserData(new UserData(data))
+      })
+      .catch((error) => {
+        setError(error.message)
+      })
+      .finally(() => {
         setLoading(false)
-      }
-    }
-
-    loadUser()
+      })
   }, [userId])
-
-  console.log(user)
 
   return (
     <div className="ss-dashboard">
       {loading && <h1>Chargement données utilisateur...</h1>}
       {error && <h1>Erreur : {error}</h1>}
-      {user && (
+      {userData && (
         <>
           <div className="ss-dashboard__sidebar">
             <NavDashboard buttonList={buttonList} />
@@ -93,7 +79,7 @@ const Dashboard: React.FC = () => {
                 <h1>
                   Bonjour{' '}
                   <span className="ss-dashboard__content__header__name">
-                    {user && user.getFirstName()}
+                    {userData.getFirstName()}
                   </span>
                 </h1>
                 {true ? (
@@ -121,10 +107,10 @@ const Dashboard: React.FC = () => {
                   background={{ backgroundColor: '#282D30' }}
                   padding={{ padding: '5px' }}
                 >
-                  <PerformanceChart data={user.getPerformance()} />
+                  <PerformanceChart />
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
-                  <ScoreChart score={user.getDailyScore()} />
+                  <ScoreChart score={userData.getDailyScore()} />
                 </Card>
                 <div style={gridAreaList[4]}></div>
               </section>
