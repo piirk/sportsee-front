@@ -1,6 +1,6 @@
 import { UserActivity as UserActivityType } from '../types/user'
 
-export class UserActivityModel {
+export class UserActivity {
   private data: UserActivityType
 
   constructor(data: UserActivityType) {

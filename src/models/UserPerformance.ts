@@ -1,13 +1,30 @@
 import { UserPerformance as UserPerformanceType } from '../types/user'
 
-export class UserPerformanceModel {
-  private data: UserPerformanceType
+export class UserPerformance {
+  private userId: number
+  private kind: { [key: number]: string }
+
+  private data: Array<{
+    value: number
+
+    kind: number
+  }>
 
   constructor(data: UserPerformanceType) {
-    this.data = data
+    this.userId = data.userId
+    this.kind = data.kind
+    this.data = data.data
   }
 
   getData(): UserPerformanceType {
-    return this.data
+    return {
+      userId: this.userId,
+      kind: this.kind,
+      data: this.data,
+    }
+  }
+
+  getKindName(key: number): string {
+    return this.kind[key]
   }
 }

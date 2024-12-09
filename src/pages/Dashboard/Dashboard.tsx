@@ -7,7 +7,15 @@ import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
 import { UserData } from '../../models/UserData'
-import { getUserData } from '../../services/api'
+import { UserPerformance } from '../../models/UserPerformance'
+import { UserActivity } from '../../models/UserActivity'
+import { UserSessions } from '../../models/UserSessions'
+import {
+  getUserData,
+  getUserPerformance,
+  getUserActivity,
+  getUserSessions,
+} from '../../services/api'
 
 import icon1 from '../../assets/icon1.svg'
 import icon2 from '../../assets/icon2.svg'
@@ -35,6 +43,10 @@ type RouteParams = {
 
 const Dashboard: React.FC = () => {
   const [userData, setUserData] = useState<UserData | null>(null)
+  const [userPerformance, setUserPerformance] =
+    useState<UserPerformance | null>(null)
+  const [userActivity, setUserActivity] = useState<UserActivity | null>(null)
+  const [userSessions, setUserSessions] = useState<UserSessions | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -46,17 +58,34 @@ const Dashboard: React.FC = () => {
       return
     }
 
-    // Load UserData
-    getUserData(userId)
-      .then((data) => {
-        setUserData(new UserData(data))
-      })
-      .catch((error) => {
-        setError(error.message)
-      })
-      .finally(() => {
+    const fetchAllData = async () => {
+      setLoading(true)
+      try {
+        const [
+          userDataResponse,
+          userPerformanceResponse,
+          userActivityResponse,
+          userSessionsResponse,
+        ] = await Promise.all([
+          getUserData(userId),
+          getUserPerformance(userId),
+          getUserActivity(userId),
+          getUserSessions(userId),
+        ])
+
+        setUserData(new UserData(userDataResponse))
+        setUserPerformance(new UserPerformance(userPerformanceResponse))
+        setUserActivity(new UserActivity(userActivityResponse))
+        setUserSessions(new UserSessions(userSessionsResponse))
+      } catch (error) {
+        setError((error as Error).message)
+        console.error('Error loading user data:', error)
+      } finally {
         setLoading(false)
-      })
+      }
+    }
+
+    fetchAllData()
   }, [userId])
 
   return (
@@ -107,7 +136,9 @@ const Dashboard: React.FC = () => {
                   background={{ backgroundColor: '#282D30' }}
                   padding={{ padding: '5px' }}
                 >
-                  <PerformanceChart />
+                  {userPerformance && (
+                    <PerformanceChart data={userPerformance} />
+                  )}
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
                   <ScoreChart score={userData.getDailyScore()} />

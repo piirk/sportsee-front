@@ -1,6 +1,6 @@
 import { UserSessions as UserSessionsType } from '../types/user'
 
-export class UserSessionsModel {
+export class UserSessions {
   private data: UserSessionsType
 
   constructor(data: UserSessionsType) {
