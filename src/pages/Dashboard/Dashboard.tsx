@@ -6,6 +6,7 @@ import Card from '../../components/Card/Card'
 import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
+import KeyData from '../../components/KeyData/KeyData'
 import { UserData } from '../../models/UserData'
 import { UserPerformance } from '../../models/UserPerformance'
 import { UserActivity } from '../../models/UserActivity'
@@ -151,7 +152,7 @@ const Dashboard: React.FC = () => {
                     Object.entries(userData.getAllKeyData()).map(
                       ([key, value]) => (
                         <Card key={key} aspectRatio={{ aspectRatio: 'unset' }}>
-                          {key + value}
+                          <KeyData title={key} value={value} />
                         </Card>
                       ),
                     )}
