@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
@@ -7,16 +6,6 @@ import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
 import KeyData from '../../components/KeyData/KeyData'
-import { UserData } from '../../models/UserData'
-import { UserPerformance } from '../../models/UserPerformance'
-import { UserActivity } from '../../models/UserActivity'
-import { UserSessions } from '../../models/UserSessions'
-import {
-  getUserData,
-  getUserPerformance,
-  getUserActivity,
-  getUserSessions,
-} from '../../services/api'
 import { useFetchUserData } from '../../hooks/useFetchUserData'
 import { buttonList } from '../../config/navDashboardConfig'
 import { gridAreaList } from '../../config/layoutConfig'
