@@ -1,0 +1,35 @@
+.ss-keydata {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &__icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 24px;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__value {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__title {
+    font-size: 14px;
+    color: #74798c;
+  }
+}
