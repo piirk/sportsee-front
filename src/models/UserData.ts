@@ -31,4 +31,13 @@ export class UserData {
   getDailyScore(): number {
     return this.todayScore ?? this.score ?? 0
   }
+
+  getAllKeyData(): {
+    calorieCount: number
+    proteinCount: number
+    carbohydrateCount: number
+    lipidCount: number
+  } {
+    return this.keyData
+  }
 }

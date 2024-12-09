@@ -143,7 +143,19 @@ const Dashboard: React.FC = () => {
                 <Card gridArea={gridAreaList[3]}>
                   <ScoreChart score={userData.getDailyScore()} />
                 </Card>
-                <div style={gridAreaList[4]}></div>
+                <div
+                  className="ss-dashboard__content__main__keydata"
+                  style={gridAreaList[4]}
+                >
+                  {userData &&
+                    Object.entries(userData.getAllKeyData()).map(
+                      ([key, value]) => (
+                        <Card key={key} aspectRatio={{ aspectRatio: 'unset' }}>
+                          {key + value}
+                        </Card>
+                      ),
+                    )}
+                </div>
               </section>
             </div>
           </div>
