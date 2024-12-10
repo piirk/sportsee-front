@@ -5,7 +5,7 @@ type ScoreChartProps = {
   score: number | undefined
 }
 
-const RadialBarChartComponent: React.FC<ScoreChartProps> = ({ score = 0 }) => {
+const ScoreChart: React.FC<ScoreChartProps> = ({ score = 0 }) => {
   return (
     <div className="ss-radial-bar-chart">
       {/* Cercle blanc central */}
@@ -41,4 +41,4 @@ const RadialBarChartComponent: React.FC<ScoreChartProps> = ({ score = 0 }) => {
   )
 }
 
-export default RadialBarChartComponent
+export default ScoreChart

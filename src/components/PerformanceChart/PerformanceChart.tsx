@@ -63,7 +63,7 @@ type PerformanceChartProps = {
   data: UserPerformance
 }
 
-const RadarChartComponent: React.FC<PerformanceChartProps> = ({ data }) => {
+const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
   const formattedData = data.getData().data.map((item) => {
     const subject =
       kindTranslations[
@@ -94,4 +94,4 @@ const RadarChartComponent: React.FC<PerformanceChartProps> = ({ data }) => {
   )
 }
 
-export default RadarChartComponent
+export default PerformanceChart

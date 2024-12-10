@@ -51,7 +51,7 @@ const CustomizedDot: React.FC<{
   )
 }
 
-const LineChartComponent: React.FC = () => {
+const ObjectiveChart: React.FC = () => {
   const minY = Math.min(...sessions.map((session) => session.sessionLength))
 
   return (
@@ -77,4 +77,4 @@ const LineChartComponent: React.FC = () => {
   )
 }
 
-export default LineChartComponent
+export default ObjectiveChart
