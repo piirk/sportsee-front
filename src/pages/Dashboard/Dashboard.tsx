@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import './Dashboard.scss'
 import NavDashboard from '../../components/NavDashboard/NavDashboard'
 import Card from '../../components/Card/Card'
+import ActivityChart from '../../components/ActivityChart/ActivityChart'
 import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
@@ -60,7 +61,7 @@ const Dashboard: React.FC = () => {
                   gridArea={gridAreaList[0]}
                   aspectRatio={{ aspectRatio: '167/64' }}
                 >
-                  <h2>Activité quotidienne</h2>
+                  {userActivity && <ActivityChart data={userActivity} />}
                 </Card>
                 <Card
                   gridArea={gridAreaList[1]}
