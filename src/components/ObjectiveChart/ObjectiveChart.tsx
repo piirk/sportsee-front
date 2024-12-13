@@ -7,20 +7,20 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import './ObjectiveChart.scss'
+import { UserSessions } from '../../models/UserSessions'
 
-const sessions = [
-  { day: 'L', sessionLength: 30 },
-  { day: 'M', sessionLength: 40 },
-  { day: 'M', sessionLength: 50 },
-  { day: 'J', sessionLength: 30 },
-  { day: 'V', sessionLength: 30 },
-  { day: 'S', sessionLength: 50 },
-  { day: 'D', sessionLength: 50 },
-]
-
-const CustomizedDot: React.FC<{ cx?: number; cy?: number }> = ({ cx, cy }) => {
+const CustomizedDot: React.FC<{
+  cx?: number
+  cy?: number
+}> = ({ cx, cy }) => {
   return (
-    <svg x={cx! - 15} y={cy! - 15} width={30} height={30}>
+    <svg
+      className="ss-objective-chart__dot"
+      x={cx! - 15}
+      y={cy! - 15}
+      width={30}
+      height={30}
+    >
       <circle cx="15" cy="15" r="13" fill="white" opacity="0.2" />
       <circle cx="15" cy="15" r="8" fill="white" />
     </svg>
@@ -45,16 +45,56 @@ const CustomTick: React.FC<{
   </text>
 )
 
-const ObjectiveChart: React.FC = () => {
-  const minY = Math.min(...sessions.map((session) => session.sessionLength))
+const CustomTooltip: React.FC<{
+  active?: boolean
+  payload?: { value: number }[]
+}> = ({ active, payload }) => {
+  if (active && payload && payload.length > 0) {
+    return (
+      <div
+        style={{
+          backgroundColor: 'white',
+          padding: '10px',
+          border: '1px solid #ccc',
+          color: 'black',
+          fontWeight: 'bold',
+        }}
+      >
+        <p>{`${payload[0].value} min`}</p>
+      </div>
+    )
+  }
+  return null
+}
+
+// table des jours
+const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+
+type ObjectiveChartProps = {
+  data: UserSessions
+}
+
+const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ data }) => {
+  const formattedData = data.getData().sessions.map((item) => {
+    const labelledDay = days[item.day - 1]
+    return {
+      day: labelledDay,
+      sessionLength: item.sessionLength,
+    }
+  })
+
+  const minY = Math.min(
+    ...formattedData.map((session) => session.sessionLength),
+  )
 
   return (
     <div className="ss-objective-chart">
       <h2 className="ss-objective-chart__title">Durée moyenne des sessions</h2>
       <div className="ss-objective-chart__container">
+        <div className="ss-objective-chart__dot-overlay"></div>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
-            data={sessions}
+            data={formattedData}
             margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
           >
             <defs>
@@ -65,13 +105,13 @@ const ObjectiveChart: React.FC = () => {
             </defs>
             <XAxis
               dataKey="day"
-              padding="no-gap"
+              padding={{ left: 20, right: 20 }}
               axisLine={false}
               tickLine={false}
               tick={(props) => <CustomTick {...props} />}
             />
             <YAxis domain={[minY, 'dataMax']} hide />
-            <Tooltip cursor={false} />
+            <Tooltip cursor={false} content={<CustomTooltip />} />
             <Line
               dot={false}
               type="monotone"

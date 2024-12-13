@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
                   background={{ backgroundColor: '#FF0000' }}
                   padding={{ padding: '0' }}
                 >
-                  <ObjectiveChart />
+                  {userSessions && <ObjectiveChart data={userSessions} />}
                 </Card>
                 <Card
                   gridArea={gridAreaList[2]}

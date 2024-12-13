@@ -65,10 +65,7 @@ type PerformanceChartProps = {
 
 const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
   const formattedData = data.getData().data.map((item) => {
-    const subject =
-      kindTranslations[
-        data.getKindName(item.kind) || data.getKindName(item.kind)
-      ]
+    const subject = kindTranslations[data.getKindName(item.kind)]
     return {
       subject,
       A: item.value,
