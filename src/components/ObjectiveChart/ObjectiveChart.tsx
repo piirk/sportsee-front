@@ -105,7 +105,7 @@ const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ data }) => {
             </defs>
             <XAxis
               dataKey="day"
-              padding={{ left: 20, right: 20 }}
+              padding={{ left: 10, right: 10 }}
               axisLine={false}
               tickLine={false}
               tick={(props) => <CustomTick {...props} />}
