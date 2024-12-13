@@ -1,9 +1,22 @@
 import { UserActivity as UserActivityType } from '../types/user'
 
 export class UserActivity {
-  private data: UserActivityType
+  private userId: number
+  private sessions: Array<{
+    day: string
+    kilogram: number
+    calories: number
+  }>
 
   constructor(data: UserActivityType) {
-    this.data = data
+    this.userId = data.userId
+    this.sessions = data.sessions
+  }
+
+  getData(): UserActivityType {
+    return {
+      userId: this.userId,
+      sessions: this.sessions,
+    }
   }
 }
