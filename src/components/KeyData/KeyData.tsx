@@ -15,7 +15,7 @@ const KeyData: React.FC<KeyDataProps> = ({ dataKey, value }) => {
   }
 
   return (
-    <div className="ss-keydata">
+    <figure className="ss-keydata">
       <div
         className="ss-keydata__icon-container"
         style={{ backgroundColor: config.bgColor }}
@@ -26,14 +26,14 @@ const KeyData: React.FC<KeyDataProps> = ({ dataKey, value }) => {
           className="ss-keydata__icon"
         />
       </div>
-      <div className="ss-keydata__content">
+      <figcaption className="ss-keydata__content">
         <h2 className="ss-keydata__value">
           {value}
           {config.unit}
         </h2>
         <h3 className="ss-keydata__title">{config.title}</h3>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   )
 }
 
