@@ -77,15 +77,13 @@ type ObjectiveChartProps = {
 }
 
 const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ userId }) => {
-  const [dataUserSessions, setDataUserSessions] = useState<UserSessions | null>(
-    null,
-  )
+  const [userSessions, setUserSessions] = useState<UserSessions | null>(null)
 
   useEffect(() => {
     const fetchUserSessions = async () => {
       try {
         const userSessionsResponse = await getUserSessions(userId.toString())
-        setDataUserSessions(new UserSessions(userSessionsResponse))
+        setUserSessions(new UserSessions(userSessionsResponse))
       } catch (error) {
         console.error('Error loading user sessions:', error)
       }
@@ -94,11 +92,11 @@ const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ userId }) => {
     fetchUserSessions()
   }, [userId])
 
-  if (!dataUserSessions) {
+  if (!userSessions) {
     return null
   }
 
-  const formattedData = dataUserSessions.sessions.map((item) => {
+  const formattedData = userSessions.sessions.map((item) => {
     const labelledDay = days[item.day - 1]
     return {
       day: labelledDay,
