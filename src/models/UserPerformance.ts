@@ -1,10 +1,9 @@
 import { UserPerformance as UserPerformanceType } from '../types/user'
 
 export class UserPerformance {
-  private userId: number
-  private kind: { [key: number]: string }
-
-  private data: Array<{
+  userId: number
+  kind: { [key: number]: string }
+  data: Array<{
     value: number
 
     kind: number

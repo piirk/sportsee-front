@@ -1,8 +1,8 @@
 import { UserSessions as UserSessionsType } from '../types/user'
 
 export class UserSessions {
-  private userId: number
-  private sessions: Array<{
+  userId: number
+  sessions: Array<{
     day: number
     sessionLength: number
   }>

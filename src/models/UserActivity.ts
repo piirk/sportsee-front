@@ -1,8 +1,8 @@
 import { UserActivity as UserActivityType } from '../types/user'
 
 export class UserActivity {
-  private userId: number
-  private sessions: Array<{
+  userId: number
+  sessions: Array<{
     day: string
     kilogram: number
     calories: number
