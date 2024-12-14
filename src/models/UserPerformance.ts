@@ -15,14 +15,6 @@ export class UserPerformance {
     this.data = data.data
   }
 
-  getData(): UserPerformanceType {
-    return {
-      userId: this.userId,
-      kind: this.kind,
-      data: this.data,
-    }
-  }
-
   getKindName(key: number): string {
     return this.kind[key]
   }

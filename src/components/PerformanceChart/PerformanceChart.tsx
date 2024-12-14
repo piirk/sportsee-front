@@ -63,9 +63,11 @@ type PerformanceChartProps = {
   data: UserPerformance
 }
 
-const PerformanceChart: React.FC<PerformanceChartProps> = ({ data }) => {
-  const formattedData = data.getData().data.map((item) => {
-    const subject = kindTranslations[data.getKindName(item.kind)]
+const PerformanceChart: React.FC<PerformanceChartProps> = ({
+  data: dataUserPerformance,
+}) => {
+  const formattedData = dataUserPerformance.data.map((item) => {
+    const subject = kindTranslations[dataUserPerformance.getKindName(item.kind)]
     return {
       subject,
       A: item.value,

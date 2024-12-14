@@ -87,13 +87,11 @@ const Dashboard: React.FC = () => {
                   style={gridAreaList[4]}
                 >
                   {userData &&
-                    Object.entries(userData.getAllKeyData()).map(
-                      ([key, value]) => (
-                        <Card key={key} aspectRatio={{ aspectRatio: 'unset' }}>
-                          <KeyData dataKey={key} value={value} />
-                        </Card>
-                      ),
-                    )}
+                    Object.entries(userData.keyData).map(([key, value]) => (
+                      <Card key={key} aspectRatio={{ aspectRatio: 'unset' }}>
+                        <KeyData dataKey={key} value={value} />
+                      </Card>
+                    ))}
                 </div>
               </section>
             </div>

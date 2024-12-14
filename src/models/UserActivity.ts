@@ -12,11 +12,4 @@ export class UserActivity {
     this.userId = data.userId
     this.sessions = data.sessions
   }
-
-  getData(): UserActivityType {
-    return {
-      userId: this.userId,
-      sessions: this.sessions,
-    }
-  }
 }

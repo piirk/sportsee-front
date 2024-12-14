@@ -11,11 +11,4 @@ export class UserSessions {
     this.userId = data.userId
     this.sessions = data.sessions
   }
-
-  getData(): UserSessionsType {
-    return {
-      userId: this.userId,
-      sessions: this.sessions,
-    }
-  }
 }

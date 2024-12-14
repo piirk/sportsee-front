@@ -74,8 +74,10 @@ type ObjectiveChartProps = {
   data: UserSessions
 }
 
-const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ data }) => {
-  const formattedData = data.getData().sessions.map((item) => {
+const ObjectiveChart: React.FC<ObjectiveChartProps> = ({
+  data: dataUserSessions,
+}) => {
+  const formattedData = dataUserSessions.sessions.map((item) => {
     const labelledDay = days[item.day - 1]
     return {
       day: labelledDay,
