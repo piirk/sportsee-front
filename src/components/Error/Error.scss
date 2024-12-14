@@ -3,10 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
   height: 100%;
   width: 100%;
 
-  &__404 {
+  &__code {
     font-size: 10rem;
     font-weight: 700;
     color: #ff0101;
@@ -16,5 +17,15 @@
     font-size: 2rem;
     font-weight: 700;
     color: #333;
+
+    &--small {
+      font-size: 1rem;
+    }
+  }
+
+  &__icon {
+    width: 2rem;
+    filter: invert(27%) sepia(100%) saturate(6947%) hue-rotate(359deg)
+      brightness(97%) contrast(121%);
   }
 }

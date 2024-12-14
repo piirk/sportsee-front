@@ -11,6 +11,7 @@ import {
 import { UserActivity } from '../../models/UserActivity'
 import { useEffect, useState } from 'react'
 import { getUserActivity } from '../../services/api'
+import Error from '../Error/Error'
 
 type ActivityChartProps = {
   userId: number
@@ -22,7 +23,9 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
   useEffect(() => {
     const fetchUserActivity = async () => {
       try {
-        const userActivityResponse = await getUserActivity(userId.toString())
+        const userActivityResponse = await getUserActivity(
+          userId.toString() + '8',
+        )
         setUserActivity(new UserActivity(userActivityResponse))
       } catch (error) {
         console.error('Error loading user activity:', error)
@@ -33,7 +36,12 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
   }, [userId])
 
   if (!userActivity) {
-    return null
+    return (
+      <Error
+        code={999}
+        message="Impossible de charger les données d'activité"
+      />
+    )
   }
 
   const formattedData = userActivity.sessions.map((session) => ({
