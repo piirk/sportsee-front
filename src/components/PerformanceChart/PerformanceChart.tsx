@@ -66,7 +66,7 @@ type PerformanceChartProps = {
 }
 
 const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
-  const [dataUserPerformance, setDataUserPerformance] =
+  const [userPerformance, setUserPerformance] =
     useState<UserPerformance | null>(null)
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
         const userPerformanceResponse = await getUserPerformance(
           userId.toString(),
         )
-        setDataUserPerformance(new UserPerformance(userPerformanceResponse))
+        setUserPerformance(new UserPerformance(userPerformanceResponse))
       } catch (error) {
         console.error('Error loading user performance:', error)
       }
@@ -84,12 +84,12 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
     fetchUserPerformance()
   }, [userId])
 
-  if (!dataUserPerformance) {
+  if (!userPerformance) {
     return null
   }
 
-  const formattedData = dataUserPerformance.data.map((item) => {
-    const subject = kindTranslations[dataUserPerformance.getKindName(item.kind)]
+  const formattedData = userPerformance.data.map((item) => {
+    const subject = kindTranslations[userPerformance.getKindName(item.kind)]
     return {
       subject,
       A: item.value,
