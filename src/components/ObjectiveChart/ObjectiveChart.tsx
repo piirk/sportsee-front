@@ -98,6 +98,7 @@ const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ userId }) => {
       <Error
         code={999}
         message="Impossible de charger les données de sessions"
+        iconBlack={true}
       />
     )
   }

@@ -19,7 +19,10 @@
     color: #333;
 
     &--small {
-      font-size: 1rem;
+      padding: 0 10px 0 10px;
+      font-size: 0.8rem;
+      color: #333;
+      text-align: center;
     }
   }
 
@@ -27,5 +30,9 @@
     width: 2rem;
     filter: invert(27%) sepia(100%) saturate(6947%) hue-rotate(359deg)
       brightness(97%) contrast(121%);
+
+    &--black {
+      filter: none;
+    }
   }
 }

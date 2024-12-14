@@ -4,11 +4,13 @@ import errorIcon from '../../assets/error.svg'
 interface ErrorProps {
   code?: number
   message?: string
+  iconBlack?: boolean
 }
 
 const Error: React.FC<ErrorProps> = ({
   code = 404,
   message = "La page que vous recherchez n'existe pas.",
+  iconBlack = false,
 }) => {
   if (code !== 999) {
     return (
@@ -20,7 +22,11 @@ const Error: React.FC<ErrorProps> = ({
   } else {
     return (
       <div className="ss-error">
-        <img className="ss-error__icon" src={errorIcon} alt="Erreur" />
+        <img
+          className={`ss-error__icon ${iconBlack ? 'ss-error__icon--black' : ''}`}
+          src={errorIcon}
+          alt="Erreur"
+        />
         <p className="ss-error__message--small">{message}</p>
       </div>
     )
