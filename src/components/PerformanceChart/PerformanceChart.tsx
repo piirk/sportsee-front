@@ -90,6 +90,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
       <Error
         code={999}
         message="Impossible de charger les données de performance"
+        textWhite={true}
       />
     )
   }

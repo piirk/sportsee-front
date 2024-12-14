@@ -5,12 +5,14 @@ interface ErrorProps {
   code?: number
   message?: string
   iconBlack?: boolean
+  textWhite?: boolean
 }
 
 const Error: React.FC<ErrorProps> = ({
   code = 404,
   message = "La page que vous recherchez n'existe pas.",
   iconBlack = false,
+  textWhite = false,
 }) => {
   if (code !== 999) {
     return (
@@ -27,7 +29,11 @@ const Error: React.FC<ErrorProps> = ({
           src={errorIcon}
           alt="Erreur"
         />
-        <p className="ss-error__message--small">{message}</p>
+        <p
+          className={`ss-error__message--small ${textWhite ? 'ss-error__message--small--white' : ''}`}
+        >
+          {message}
+        </p>
       </div>
     )
   }
