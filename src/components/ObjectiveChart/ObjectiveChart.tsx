@@ -10,6 +10,7 @@ import './ObjectiveChart.scss'
 import { UserSessions } from '../../models/UserSessions'
 import { useEffect, useState } from 'react'
 import { getUserSessions } from '../../services/api'
+import Error from '../Error/Error'
 
 const CustomizedDot: React.FC<{
   cx?: number
@@ -93,7 +94,12 @@ const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ userId }) => {
   }, [userId])
 
   if (!userSessions) {
-    return null
+    return (
+      <Error
+        code={999}
+        message="Impossible de charger les données de sessions"
+      />
+    )
   }
 
   const formattedData = userSessions.sessions.map((item) => {
