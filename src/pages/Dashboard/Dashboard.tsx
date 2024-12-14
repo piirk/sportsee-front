@@ -50,20 +50,20 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="ss-dashboard">
-      {loading && <h1>Chargement données utilisateur...</h1>}
-      {error && <h1>Erreur : {error}</h1>}
-      {userData && (
-        <>
-          <div className="ss-dashboard__sidebar">
-            <NavDashboard buttonList={buttonList} />
-            <footer className="ss-dashboard__sidebar__footer">
-              <span className="ss-dashboard__sidebar__footer__copyright">
-                Copyright SportSee {new Date().getFullYear()}
-              </span>
-            </footer>
-          </div>
-          <div className="ss-dashboard__content">
-            <div className="ss-dashboard__content-wrap">
+      <div className="ss-dashboard__sidebar">
+        <NavDashboard buttonList={buttonList} />
+        <footer className="ss-dashboard__sidebar__footer">
+          <span className="ss-dashboard__sidebar__footer__copyright">
+            Copyright SportSee {new Date().getFullYear()}
+          </span>
+        </footer>
+      </div>
+      <div className="ss-dashboard__content">
+        <div className="ss-dashboard__content-wrap">
+          {loading && <h1>Chargement données utilisateur...</h1>}
+          {error && <h1>Erreur : {error}</h1>}
+          {userData && (
+            <>
               <section className="ss-dashboard__content__header">
                 <h1>
                   Bonjour{' '}
@@ -113,10 +113,10 @@ const Dashboard: React.FC = () => {
                     ))}
                 </div>
               </section>
-            </div>
-          </div>
-        </>
-      )}
+            </>
+          )}
+        </div>
+      </div>
     </div>
   )
 }
