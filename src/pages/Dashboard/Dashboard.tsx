@@ -7,6 +7,7 @@ import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
 import KeyData from '../../components/KeyData/KeyData'
+import Error from '../../components/Error/Error'
 import { buttonList } from '../../config/navDashboardConfig'
 import { gridAreaList } from '../../config/layoutConfig'
 import { useEffect, useState } from 'react'
@@ -61,7 +62,7 @@ const Dashboard: React.FC = () => {
       <div className="ss-dashboard__content">
         <div className="ss-dashboard__content-wrap">
           {loading && <h1>Chargement données utilisateur...</h1>}
-          {error && <h1>Erreur : {error}</h1>}
+          {error && <Error />}
           {userData && (
             <>
               <section className="ss-dashboard__content__header">

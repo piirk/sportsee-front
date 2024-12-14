@@ -1,0 +1,20 @@
+.ss-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  &__404 {
+    font-size: 10rem;
+    font-weight: 700;
+    color: #ff0101;
+  }
+
+  &__message {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+  }
+}
