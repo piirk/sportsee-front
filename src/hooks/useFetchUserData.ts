@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
 import { UserData } from '../models/UserData'
 import { UserPerformance } from '../models/UserPerformance'
-import { UserActivity } from '../models/UserActivity'
 import { UserSessions } from '../models/UserSessions'
 import {
   getUserData,
   getUserPerformance,
-  getUserActivity,
   getUserSessions,
 } from '../services/api'
 
@@ -26,12 +24,10 @@ export const useFetchUserData = (userId: string) => {
         const [
           userDataResponse,
           userPerformanceResponse,
-          userActivityResponse,
           userSessionsResponse,
         ] = await Promise.all([
           getUserData(userId),
           getUserPerformance(userId),
-          getUserActivity(userId),
           getUserSessions(userId),
         ])
 
