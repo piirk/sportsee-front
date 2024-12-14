@@ -7,6 +7,8 @@ import {
   Text,
 } from 'recharts'
 import { UserPerformance } from '../../models/UserPerformance'
+import { useEffect, useState } from 'react'
+import { getUserPerformance } from '../../services/api'
 
 const renderPolarAngleAxis = ({
   payload,
@@ -60,12 +62,32 @@ const kindTranslations: Record<string, string> = {
 }
 
 type PerformanceChartProps = {
-  data: UserPerformance
+  userId: number
 }
 
-const PerformanceChart: React.FC<PerformanceChartProps> = ({
-  data: dataUserPerformance,
-}) => {
+const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
+  const [dataUserPerformance, setDataUserPerformance] =
+    useState<UserPerformance | null>(null)
+
+  useEffect(() => {
+    const fetchUserPerformance = async () => {
+      try {
+        const userPerformanceResponse = await getUserPerformance(
+          userId.toString(),
+        )
+        setDataUserPerformance(new UserPerformance(userPerformanceResponse))
+      } catch (error) {
+        console.error('Error loading user performance:', error)
+      }
+    }
+
+    fetchUserPerformance()
+  }, [userId])
+
+  if (!dataUserPerformance) {
+    return null
+  }
+
   const formattedData = dataUserPerformance.data.map((item) => {
     const subject = kindTranslations[dataUserPerformance.getKindName(item.kind)]
     return {

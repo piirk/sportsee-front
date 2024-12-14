@@ -18,9 +18,7 @@ type RouteParams = {
 const Dashboard: React.FC = () => {
   const { userId } = useParams<RouteParams>()
 
-  const { userData, userPerformance, loading, error } = useFetchUserData(
-    userId || '',
-  )
+  const { userData, loading, error } = useFetchUserData(userId || '')
 
   return (
     <div className="ss-dashboard">
@@ -70,9 +68,7 @@ const Dashboard: React.FC = () => {
                   background={{ backgroundColor: '#282D30' }}
                   padding={{ padding: '5px' }}
                 >
-                  {userPerformance && (
-                    <PerformanceChart data={userPerformance} />
-                  )}
+                  <PerformanceChart userId={userData.id} />
                 </Card>
                 <Card gridArea={gridAreaList[3]}>
                   <ScoreChart score={userData.getDailyScore()} />
