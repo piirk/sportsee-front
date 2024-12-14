@@ -9,6 +9,7 @@ import {
 import { UserPerformance } from '../../models/UserPerformance'
 import { useEffect, useState } from 'react'
 import { getUserPerformance } from '../../services/api'
+import Error from '../Error/Error'
 
 const renderPolarAngleAxis = ({
   payload,
@@ -85,7 +86,12 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
   }, [userId])
 
   if (!userPerformance) {
-    return null
+    return (
+      <Error
+        code={999}
+        message="Impossible de charger les données de performance"
+      />
+    )
   }
 
   const formattedData = userPerformance.data.map((item) => {
