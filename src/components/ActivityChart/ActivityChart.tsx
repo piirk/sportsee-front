@@ -23,9 +23,7 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
   useEffect(() => {
     const fetchUserActivity = async () => {
       try {
-        const userActivityResponse = await getUserActivity(
-          userId.toString() + '8',
-        )
+        const userActivityResponse = await getUserActivity(userId.toString())
         setUserActivity(new UserActivity(userActivityResponse))
       } catch (error) {
         console.error('Error loading user activity:', error)
