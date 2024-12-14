@@ -7,9 +7,11 @@ import ObjectiveChart from '../../components/ObjectiveChart/ObjectiveChart'
 import ScoreChart from '../../components/ScoreChart/ScoreChart'
 import PerformanceChart from '../../components/PerformanceChart/PerformanceChart'
 import KeyData from '../../components/KeyData/KeyData'
-import { useFetchUserData } from '../../hooks/useFetchUserData'
 import { buttonList } from '../../config/navDashboardConfig'
 import { gridAreaList } from '../../config/layoutConfig'
+import { useEffect, useState } from 'react'
+import { UserData } from '../../models/UserData'
+import { getUserData } from '../../services/api'
 
 type RouteParams = {
   userId: string
@@ -18,7 +20,33 @@ type RouteParams = {
 const Dashboard: React.FC = () => {
   const { userId } = useParams<RouteParams>()
 
-  const { userData, loading, error } = useFetchUserData(userId || '')
+  const [userData, setUserData] = useState<UserData | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      setLoading(true)
+      if (userId) {
+        try {
+          const userDataResponse = await getUserData(userId.toString())
+          setUserData(new UserData(userDataResponse))
+        } catch (error) {
+          setLoading(false)
+          setError((error as Error).message)
+          console.error('Error loading user data:', error)
+        } finally {
+          setLoading(false)
+        }
+      } else {
+        setLoading(false)
+        setError('userId is undefined')
+        console.error('Error: userId is undefined')
+      }
+    }
+
+    fetchUserData()
+  }, [userId])
 
   return (
     <div className="ss-dashboard">
