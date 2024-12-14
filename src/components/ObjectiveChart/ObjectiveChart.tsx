@@ -8,6 +8,8 @@ import {
 } from 'recharts'
 import './ObjectiveChart.scss'
 import { UserSessions } from '../../models/UserSessions'
+import { useEffect, useState } from 'react'
+import { getUserSessions } from '../../services/api'
 
 const CustomizedDot: React.FC<{
   cx?: number
@@ -71,12 +73,31 @@ const CustomTooltip: React.FC<{
 const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
 
 type ObjectiveChartProps = {
-  data: UserSessions
+  userId: number
 }
 
-const ObjectiveChart: React.FC<ObjectiveChartProps> = ({
-  data: dataUserSessions,
-}) => {
+const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ userId }) => {
+  const [dataUserSessions, setDataUserSessions] = useState<UserSessions | null>(
+    null,
+  )
+
+  useEffect(() => {
+    const fetchUserSessions = async () => {
+      try {
+        const userSessionsResponse = await getUserSessions(userId.toString())
+        setDataUserSessions(new UserSessions(userSessionsResponse))
+      } catch (error) {
+        console.error('Error loading user sessions:', error)
+      }
+    }
+
+    fetchUserSessions()
+  }, [userId])
+
+  if (!dataUserSessions) {
+    return null
+  }
+
   const formattedData = dataUserSessions.sessions.map((item) => {
     const labelledDay = days[item.day - 1]
     return {
