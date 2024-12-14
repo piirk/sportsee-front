@@ -15,7 +15,7 @@ type ActivityChartProps = {
 }
 
 const ActivityChart: React.FC<ActivityChartProps> = ({ data }) => {
-  const formattedData = data.getData().sessions.map((session) => ({
+  const formattedData = data.sessions.map((session) => ({
     day: new Date(session.day).getDate(),
     kilogram: session.kilogram,
     calories: session.calories,

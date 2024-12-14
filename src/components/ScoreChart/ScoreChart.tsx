@@ -2,10 +2,10 @@ import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts'
 import './ScoreChart.scss'
 
 type ScoreChartProps = {
-  score: number | undefined
+  score: number
 }
 
-const ScoreChart: React.FC<ScoreChartProps> = ({ score = 0 }) => {
+const ScoreChart: React.FC<ScoreChartProps> = ({ score }) => {
   return (
     <div className="ss-radial-bar-chart">
       {/* Cercle blanc central */}
