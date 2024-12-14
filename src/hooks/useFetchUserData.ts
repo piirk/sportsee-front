@@ -14,7 +14,7 @@ export const useFetchUserData = (userId: string) => {
   const [userData, setUserData] = useState<UserData | null>(null)
   const [userPerformance, setUserPerformance] =
     useState<UserPerformance | null>(null)
-  const [userActivity, setUserActivity] = useState<UserActivity | null>(null)
+
   const [userSessions, setUserSessions] = useState<UserSessions | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -37,7 +37,6 @@ export const useFetchUserData = (userId: string) => {
 
         setUserData(new UserData(userDataResponse))
         setUserPerformance(new UserPerformance(userPerformanceResponse))
-        setUserActivity(new UserActivity(userActivityResponse))
         setUserSessions(new UserSessions(userSessionsResponse))
       } catch (error) {
         setError((error as Error).message)
@@ -53,7 +52,6 @@ export const useFetchUserData = (userId: string) => {
   return {
     userData,
     userPerformance,
-    userActivity,
     userSessions,
     loading,
     error,

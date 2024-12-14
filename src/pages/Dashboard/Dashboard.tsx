@@ -18,14 +18,8 @@ type RouteParams = {
 const Dashboard: React.FC = () => {
   const { userId } = useParams<RouteParams>()
 
-  const {
-    userData,
-    userPerformance,
-    userActivity,
-    userSessions,
-    loading,
-    error,
-  } = useFetchUserData(userId || '')
+  const { userData, userPerformance, userSessions, loading, error } =
+    useFetchUserData(userId || '')
 
   return (
     <div className="ss-dashboard">
@@ -61,7 +55,7 @@ const Dashboard: React.FC = () => {
                   gridArea={gridAreaList[0]}
                   aspectRatio={{ aspectRatio: '167/64' }}
                 >
-                  {userActivity && <ActivityChart data={userActivity} />}
+                  <ActivityChart userId={userData.id} />
                 </Card>
                 <Card
                   gridArea={gridAreaList[1]}

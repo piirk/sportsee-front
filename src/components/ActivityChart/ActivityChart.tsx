@@ -9,13 +9,34 @@ import {
   YAxis,
 } from 'recharts'
 import { UserActivity } from '../../models/UserActivity'
+import { useEffect, useState } from 'react'
+import { getUserActivity } from '../../services/api'
 
 type ActivityChartProps = {
-  data: UserActivity
+  userId: number
 }
 
-const ActivityChart: React.FC<ActivityChartProps> = ({ data }) => {
-  const formattedData = data.sessions.map((session) => ({
+const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
+  const [userActivity, setUserActivity] = useState<UserActivity | null>(null)
+
+  useEffect(() => {
+    const fetchUserActivity = async () => {
+      try {
+        const userActivityResponse = await getUserActivity(userId.toString())
+        setUserActivity(new UserActivity(userActivityResponse))
+      } catch (error) {
+        console.error('Error loading user activity:', error)
+      }
+    }
+
+    fetchUserActivity()
+  }, [userId])
+
+  if (!userActivity) {
+    return null
+  }
+
+  const formattedData = userActivity.sessions.map((session) => ({
     day: new Date(session.day).getDate(),
     kilogram: session.kilogram,
     calories: session.calories,
