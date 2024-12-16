@@ -1,0 +1,32 @@
+.custom-legend {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  &__title {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  &__items {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #74798c;
+
+    &--color {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 50%;
+    }
+  }
+}
