@@ -10,7 +10,10 @@ import { UserPerformance } from '../../models/UserPerformance'
 import { useEffect, useState } from 'react'
 import { getUserPerformance } from '../../services/api'
 import Error from '../Error/Error'
-import { kindTranslations } from '../../constantes/kindTranslations'
+import {
+  kindTranslations,
+  specificOrder,
+} from '../../config/performanceChartConfig'
 
 const renderPolarAngleAxis = ({
   payload,
@@ -86,21 +89,26 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
     )
   }
 
-  const formattedData = userPerformance.data.map((item) => {
-    const subject = kindTranslations[userPerformance.getKindName(item.kind)]
-    return {
-      subject,
-      A: item.value,
-      fullMark: 100,
-    }
-  })
+  const formattedData = userPerformance.data
+    .map((item) => {
+      const subject = kindTranslations[userPerformance.getKindName(item.kind)]
+      return {
+        subject,
+        A: item.value,
+        fullMark: 100,
+      }
+    })
+    .sort(
+      (a, b) =>
+        specificOrder.indexOf(a.subject) - specificOrder.indexOf(b.subject),
+    )
 
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart
         cx="50%"
         cy="50%"
-        outerRadius="75%"
+        outerRadius="80%"
         data={formattedData}
         margin={{ top: 0, right: 20, bottom: 0, left: 20 }}
       >
