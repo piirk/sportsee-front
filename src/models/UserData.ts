@@ -1,5 +1,3 @@
-import { UserData as UserDataType } from '../types/user'
-
 export class UserData {
   id: number
   userInfos: {
@@ -16,7 +14,18 @@ export class UserData {
   todayScore?: number
   score?: number
 
-  constructor(data: UserDataType) {
+  constructor(data: {
+    id: number
+    userInfos: { firstName: string; lastName: string; age: number }
+    keyData: {
+      calorieCount: number
+      proteinCount: number
+      carbohydrateCount: number
+      lipidCount: number
+    }
+    todayScore?: number
+    score?: number
+  }) {
     this.id = data.id
     this.userInfos = data.userInfos
     this.keyData = data.keyData

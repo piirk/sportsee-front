@@ -1,5 +1,3 @@
-import { UserActivity as UserActivityType } from '../types/user'
-
 export class UserActivity {
   userId: number
   sessions: Array<{
@@ -8,7 +6,10 @@ export class UserActivity {
     calories: number
   }>
 
-  constructor(data: UserActivityType) {
+  constructor(data: {
+    userId: number
+    sessions: Array<{ day: string; kilogram: number; calories: number }>
+  }) {
     this.userId = data.userId
     this.sessions = data.sessions
   }

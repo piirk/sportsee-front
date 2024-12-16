@@ -1,9 +1,7 @@
-import {
-  UserActivity,
-  UserData,
-  UserPerformance,
-  UserSessions,
-} from '../types/user'
+import { UserData } from '../models/UserData'
+import { UserActivity } from '../models/UserActivity'
+import { UserSessions } from '../models/UserSessions'
+import { UserPerformance } from '../models/UserPerformance'
 
 const API_BASE_URL = 'http://localhost:3001'
 
