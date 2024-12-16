@@ -17,7 +17,7 @@ type ActivityChartProps = {
   userId: number
 }
 
-const CustomLegend = () => {
+const CustomLegend: React.FC = () => {
   return (
     <div className="custom-legend">
       <span className="custom-legend__title">Activité quotidienne</span>
@@ -39,6 +39,22 @@ const CustomLegend = () => {
       </div>
     </div>
   )
+}
+
+const CustomTooltip: React.FC<{
+  active?: boolean
+  payload?: { value: number }[]
+}> = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="custom-tooltip__item">{`${payload[0].value}kg`}</p>
+        <p className="custom-tooltip__item">{`${payload[1].value}kCal`}</p>
+      </div>
+    )
+  }
+
+  return null
 }
 
 const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
@@ -94,7 +110,7 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
             axisLine={false}
           />
           <YAxis yAxisId="left" dataKey="calories" hide={true} />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           <CartesianGrid strokeDasharray="2 2" vertical={false} />
           <Bar
             yAxisId="right"

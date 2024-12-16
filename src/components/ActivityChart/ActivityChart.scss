@@ -30,3 +30,18 @@
     }
   }
 }
+
+.custom-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #e60000;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 20px 12px;
+
+  &__item {
+    margin: 0;
+  }
+}
