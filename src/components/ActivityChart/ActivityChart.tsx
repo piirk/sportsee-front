@@ -98,7 +98,6 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
           barSize={7}
           data={formattedData}
         >
-          <XAxis dataKey="day" tickSize={20} unit="" tickLine={false} />
           <YAxis
             yAxisId="right"
             orientation="right"
@@ -108,10 +107,23 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
             allowDecimals={false}
             tickLine={false}
             axisLine={false}
+            tick={{ fill: '#9B9EAC' }}
           />
           <YAxis yAxisId="left" dataKey="calories" hide={true} />
+          <CartesianGrid
+            stroke="#DEDEDE"
+            strokeDasharray="2 2"
+            vertical={false}
+          />
           <Tooltip content={<CustomTooltip />} />
-          <CartesianGrid strokeDasharray="2 2" vertical={false} />
+          <XAxis
+            dataKey="day"
+            tickSize={20}
+            unit=""
+            tickLine={false}
+            axisLine={{ stroke: '#DEDEDE' }}
+            tick={{ fill: '#9B9EAC' }}
+          />
           <Bar
             yAxisId="right"
             dataKey="kilogram"
