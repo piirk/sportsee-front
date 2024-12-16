@@ -10,6 +10,7 @@ import { UserPerformance } from '../../models/UserPerformance'
 import { useEffect, useState } from 'react'
 import { getUserPerformance } from '../../services/api'
 import Error from '../Error/Error'
+import { kindTranslations } from '../../constantes/kindTranslations'
 
 const renderPolarAngleAxis = ({
   payload,
@@ -51,16 +52,6 @@ const renderPolarAngleAxis = ({
     {payload.value}
   </Text>
 )
-
-// Table de traduction des `kind`
-const kindTranslations: Record<string, string> = {
-  cardio: 'Cardio',
-  energy: 'Énergie',
-  endurance: 'Endurance',
-  strength: 'Force',
-  speed: 'Vitesse',
-  intensity: 'Intensité',
-}
 
 type PerformanceChartProps = {
   userId: number

@@ -12,20 +12,18 @@ import Dashboard from './pages/Dashboard/Dashboard'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
-  <React.StrictMode>
-    <Router
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
-      <Header />
-      <Routes>
-        {/* Redirect to one user --dev */}
-        <Route path="/" element={<Navigate to="/18" replace />} />
-        <Route path=":userId" element={<Dashboard />} />
-        <Route path="*" element={<div>Page not found</div>} />
-      </Routes>
-    </Router>
-  </React.StrictMode>,
+  <Router
+    future={{
+      v7_startTransition: true,
+      v7_relativeSplatPath: true,
+    }}
+  >
+    <Header />
+    <Routes>
+      {/* Redirect to one user --dev */}
+      <Route path="/" element={<Navigate to="/18" replace />} />
+      <Route path=":userId" element={<Dashboard />} />
+      <Route path="*" element={<div>Page not found</div>} />
+    </Routes>
+  </Router>,
 )
