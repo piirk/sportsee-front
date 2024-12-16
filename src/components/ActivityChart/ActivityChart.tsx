@@ -3,7 +3,6 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Legend,
   Tooltip,
   XAxis,
   YAxis,
@@ -87,7 +86,7 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
           <YAxis
             yAxisId="right"
             orientation="right"
-            domain={['dataMin - 1', 'dataMax + 1']}
+            domain={['dataMin - 1', 'dataMax']}
             tickSize={20}
             dataKey="kilogram"
             allowDecimals={false}
