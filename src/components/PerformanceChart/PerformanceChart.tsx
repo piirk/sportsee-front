@@ -108,7 +108,7 @@ const PerformanceChart: React.FC<PerformanceChartProps> = ({ userId }) => {
       <RadarChart
         cx="50%"
         cy="50%"
-        outerRadius="80%"
+        outerRadius="70%"
         data={formattedData}
         margin={{ top: 0, right: 20, bottom: 0, left: 20 }}
       >
