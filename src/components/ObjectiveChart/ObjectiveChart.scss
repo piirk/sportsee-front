@@ -2,19 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-
-  &__title {
-    margin: 0;
-    padding: 30px 35px 0 35px;
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 24px;
-    color: rgba(255, 255, 255, 0.5);
-
-    @media screen and (max-width: 1200px) {
-      padding: 20px 25px 0 25px;
-    }
-  }
+  width: 100%;
 
   &__container {
     position: relative;
@@ -22,7 +10,15 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    max-height: 90%;
+  }
+
+  &__title {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
   }
 
   &__dot-overlay {

@@ -5,6 +5,7 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  Rectangle,
 } from 'recharts'
 import './ObjectiveChart.scss'
 import { UserSessions } from '../../models/UserSessions'
@@ -70,6 +71,22 @@ const CustomTooltip: React.FC<{
   return null
 }
 
+const CustomCursor: React.FC<{
+  points?: { x: number; y: number }[]
+  width?: number
+}> = ({ points, width }: any) => {
+  const { x } = points[0]
+  return (
+    <Rectangle
+      fill="rgba(0, 0, 0, 0.1)"
+      x={x}
+      y={-1}
+      width={width}
+      height={500}
+    />
+  )
+}
+
 // table des jours
 const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
 
@@ -117,13 +134,17 @@ const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ userId }) => {
 
   return (
     <div className="ss-objective-chart">
-      <h2 className="ss-objective-chart__title">Durée moyenne des sessions</h2>
       <div className="ss-objective-chart__container">
+        <h2 className="ss-objective-chart__title">
+          Durée moyenne des
+          <br />
+          sessions
+        </h2>
         <div className="ss-objective-chart__dot-overlay"></div>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={formattedData}
-            margin={{ top: 10, right: 0, bottom: 10, left: 0 }}
+            margin={{ top: 70, right: 0, bottom: 10, left: 0 }}
           >
             <defs>
               <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
@@ -139,7 +160,7 @@ const ObjectiveChart: React.FC<ObjectiveChartProps> = ({ userId }) => {
               tick={(props) => <CustomTick {...props} />}
             />
             <YAxis domain={[minY, 'dataMax']} hide />
-            <Tooltip cursor={false} content={<CustomTooltip />} />
+            <Tooltip cursor={<CustomCursor />} content={<CustomTooltip />} />
             <Line
               dot={false}
               type="monotone"
