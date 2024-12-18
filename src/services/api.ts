@@ -42,7 +42,3 @@ export const getUserPerformance = async (
 ): Promise<UserPerformance> => {
   return fetchData<UserPerformance>(`user/${id}/performance`)
 }
-
-export const getDailyScore = (user: UserData): number | undefined => {
-  return user.todayScore ?? user.score
-}
