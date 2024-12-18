@@ -69,7 +69,7 @@ const Dashboard: React.FC = () => {
                 <h1>
                   Bonjour{' '}
                   <span className="ss-dashboard__content__header__name">
-                    {userData.getFirstName()}
+                    {userData.userInfos.firstName}
                   </span>
                 </h1>
                 {true ? (
