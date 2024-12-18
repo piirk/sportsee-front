@@ -12,6 +12,7 @@ import { getUserActivity } from '../../services/api'
 import Error from '../Error/Error'
 import { useEffect, useState } from 'react'
 import './ActivityChart.scss'
+import { UserActivitySession } from '../../models/UserActivitySession'
 
 type ActivityChartProps = {
   userId: number
@@ -82,11 +83,13 @@ const ActivityChart: React.FC<ActivityChartProps> = ({ userId }) => {
     )
   }
 
-  const formattedData = userActivity.sessions.map((session) => ({
-    day: new Date(session.day).getDate(),
-    kilogram: session.kilogram,
-    calories: session.calories,
-  }))
+  const formattedData = userActivity.sessions.map(
+    (session: UserActivitySession) => ({
+      day: new Date(session.day).getDate(),
+      kilogram: session.kilogram,
+      calories: session.calories,
+    }),
+  )
 
   return (
     <>

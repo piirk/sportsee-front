@@ -1,14 +1,10 @@
+import { UserSessionObjective } from './UserSessionObjective'
+
 export class UserSessions {
   userId: number
-  sessions: Array<{
-    day: number
-    sessionLength: number
-  }>
+  sessions: UserSessionObjective[]
 
-  constructor(data: {
-    userId: number
-    sessions: Array<{ day: number; sessionLength: number }>
-  }) {
+  constructor(data: { userId: number; sessions: UserSessionObjective[] }) {
     this.userId = data.userId
     this.sessions = data.sessions
   }

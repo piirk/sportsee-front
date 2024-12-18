@@ -1,18 +1,18 @@
+import { UserPerformanceData } from './UserPerformanceData'
+import { UserPerformanceKind } from './UserPerformanceKind'
+
 export class UserPerformance {
   userId: number
   kind: { [key: number]: string }
-  data: Array<{
-    value: number
-    kind: number
-  }>
+  data: UserPerformanceData[]
 
   constructor(data: {
     userId: number
     kind: { [key: number]: string }
-    data: Array<{ value: number; kind: number }>
+    data: UserPerformanceData[]
   }) {
     this.userId = data.userId
-    this.kind = data.kind
+    this.kind = new UserPerformanceKind(data.kind)
     this.data = data.data
   }
 

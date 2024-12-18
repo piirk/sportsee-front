@@ -1,28 +1,17 @@
+import { KeyData } from './KeyData'
+import { UserInfos } from './UserInfos'
+
 export class UserData {
   id: number
-  userInfos: {
-    firstName: string
-    lastName: string
-    age: number
-  }
-  keyData: {
-    calorieCount: number
-    proteinCount: number
-    carbohydrateCount: number
-    lipidCount: number
-  }
+  userInfos: UserInfos
+  keyData: KeyData
   todayScore?: number
   score?: number
 
   constructor(data: {
     id: number
-    userInfos: { firstName: string; lastName: string; age: number }
-    keyData: {
-      calorieCount: number
-      proteinCount: number
-      carbohydrateCount: number
-      lipidCount: number
-    }
+    userInfos: UserInfos
+    keyData: KeyData
     todayScore?: number
     score?: number
   }) {
