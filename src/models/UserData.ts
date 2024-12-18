@@ -33,10 +33,6 @@ export class UserData {
     this.score = data.score ?? undefined
   }
 
-  getFirstName(): string {
-    return this.userInfos.firstName
-  }
-
   getDailyScore(): number {
     return this.todayScore ?? this.score ?? 0
   }

@@ -1,14 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './index.scss'
 import Header from './components/Header/Header'
 import Dashboard from './pages/Dashboard/Dashboard'
+import Error from './components/Error/Error'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 root.render(
@@ -20,10 +16,8 @@ root.render(
   >
     <Header />
     <Routes>
-      {/* Redirect to one user --dev */}
-      <Route path="/" element={<Navigate to="/18" replace />} />
       <Route path=":userId" element={<Dashboard />} />
-      <Route path="*" element={<div>Page not found</div>} />
+      <Route path="*" element={<Error />} />
     </Routes>
   </Router>,
 )
