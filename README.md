@@ -44,7 +44,7 @@ npm install
 ou
 
 ```bash
-npm install
+yarn install
 ```
 
 L'application sera accessible à l'adresse http://localhost:3000.
