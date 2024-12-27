@@ -73,13 +73,6 @@ src/
 
 L'application interagit avec une API pour récupérer les données de l'utilisateur. Assurez-vous que l'API est disponible et configurée correctement.
 
-### Endpoints disponibles
-
-- `GET /user/:userId` : Récupère les informations de l'utilisateur.
-- `GET /user/:userId/activity` : Récupère les données d'activité de l'utilisateur.
-- `GET /user/:userId/average-sessions` : Récupère les sessions moyennes de l'utilisateur.
-- `GET /user/:userId/performance` : Récupère les données de performance de l'utilisateur.
-
 ## Licence
 
 Ce projet est sous licence MIT.
